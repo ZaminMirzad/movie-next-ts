@@ -18,9 +18,9 @@ export default function Header({ mode, toggleMode }: Props) {
 						mode === 'light' ? 'dark' : 'light'
 					} `}
 				>
-					<div className='container-fluid '>
+					<div className='container-fluid h-100'>
 						<a
-							className='navbar-brand bg-danger rounded-5 text-white px-4 fs-5 fw-semibold d-flex align-items-center gap-2'
+							className='navbar-brand bg-danger rounded-1 text-white px-4 fs-5 fw-semibold d-flex align-items-center gap-2 h-100'
 							href='#'
 						>
 							PLAX <BsCollectionPlayFill fontSize='26' />
@@ -107,7 +107,7 @@ export default function Header({ mode, toggleMode }: Props) {
 								role='search'
 							>
 								<input
-									className='form-control form-control-sm me-2   '
+									className='form-control form-control-sm me-2 rounded-1  '
 									type='search'
 									placeholder='Search here...'
 									aria-label='Search'

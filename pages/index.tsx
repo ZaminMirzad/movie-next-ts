@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import { Inter } from '@next/font/google';
-import { Header } from '@/components';
+import { Header, MovieCard } from '@/components';
 import { useState } from 'react';
 import { SiHomeassistant } from 'react-icons/si';
 
@@ -12,7 +12,7 @@ export default function Home() {
 	const toggleMode = () => {
 		if (mode === 'light') {
 			setmode('dark');
-			document.body.style.backgroundColor = '#67233e';
+			document.body.style.backgroundColor = '#141a4d';
 		} else {
 			setmode('light');
 			document.body.style.backgroundColor = 'white';
@@ -41,10 +41,10 @@ export default function Home() {
 					toggleMode={toggleMode}
 				/>
 				{/* Breadcrumbs */}
-				<div className='container-fluid'>
+				<div className='row container-fluid mx-auto '>
 					<nav
 						aria-label='breadcrumb'
-						className=' my-2   '
+						className=' my-2   mx-auto'
 					>
 						<ol className='breadcrumb'>
 							<li className='breadcrumb-item'>
@@ -66,6 +66,16 @@ export default function Home() {
 				</div>
 				{/* Featured */}
 				{/* Recent */}
+				<div className='row row-cols-1 row-cols-sm-2  row-cols-lg-5 row-cols-md-3 g-4 container-fluid mx-auto'>
+					<MovieCard title='card title This is a longer card with a longer card with supporting text below  ' />
+					<MovieCard title='card title' />
+					<MovieCard title='card title' />
+					<MovieCard title='card title' />
+					<MovieCard title='card title' />
+					<MovieCard title='card title' />
+					<MovieCard title='card title' />
+					<MovieCard title='card title' />
+				</div>
 				{/* Trends */}
 			</main>
 		</>
