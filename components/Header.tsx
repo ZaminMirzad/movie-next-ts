@@ -12,7 +12,7 @@ export default function Header({ mode, toggleMode }: Props) {
 	const bgColor: string = 'accent2';
 	return (
 		<div className='fluid '>
-			<div className='container-fluid px-5 '>
+			<div className='container-fluid '>
 				<nav
 					className={`navbar navbar-expand-lg bg-body-tertiary  text-white text-${
 						mode === 'light' ? 'dark' : 'light'

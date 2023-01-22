@@ -44,7 +44,7 @@ export default function Home() {
 				<div className='container-fluid'>
 					<nav
 						aria-label='breadcrumb'
-						className=' my-2 px-5  '
+						className=' my-2   '
 					>
 						<ol className='breadcrumb'>
 							<li className='breadcrumb-item'>
