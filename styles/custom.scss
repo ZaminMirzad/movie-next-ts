@@ -1,0 +1,18 @@
+// override colors
+
+$theme-colors: (
+	'light': #d9eae6,
+	'dark': #67233e,
+	'primary': #374a0b,
+	'secondary': #4b6b2a,
+	'info': #afc350,
+	'accent1': #a0b9db,
+	'accent2': #6289be,
+	'accent3': #cc7992,
+	'success': #31b415,
+	'warning': #fec623,
+	'danger': #f80953,
+);
+
+// for custom colors to affect bootrap should be imported at the end
+@import '../node_modules/bootstrap/scss/bootstrap';
