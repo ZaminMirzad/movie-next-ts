@@ -4,10 +4,20 @@ import { Inter } from '@next/font/google';
 import { Header, MovieCard } from '@/components';
 import { useState } from 'react';
 import { SiHomeassistant } from 'react-icons/si';
+import { GetServerSideProps } from 'next';
 
 const inter = Inter({ subsets: ['latin'] });
+interface Props {
+	id: number;
+	firstName: string;
+	lastName: string;
+	fullName: string;
+	family: string;
+	imageUrl: string;
+	title: string;
+}
 
-export default function Home() {
+export default function Home({ movies }: { movies: Props[] }) {
 	const [mode, setmode] = useState('light');
 	const toggleMode = () => {
 		if (mode === 'light') {
@@ -67,17 +77,30 @@ export default function Home() {
 				{/* Featured */}
 				{/* Recent */}
 				<div className='row row-cols-1 row-cols-sm-2  row-cols-lg-5 row-cols-md-3 g-4 container-fluid mx-auto'>
-					<MovieCard title='card title This is a longer card with a longer card with supporting text below  ' />
-					<MovieCard title='card title' />
-					<MovieCard title='card title' />
-					<MovieCard title='card title' />
-					<MovieCard title='card title' />
-					<MovieCard title='card title' />
-					<MovieCard title='card title' />
-					<MovieCard title='card title' />
+					{movies.map((m) => {
+						return (
+							<MovieCard
+								key={m.id}
+								title={m.fullName}
+								imageUrl={m.imageUrl}
+								badge={m.family}
+								chair={m.title}
+								id={m.id}
+							/>
+						);
+					})}
 				</div>
 				{/* Trends */}
 			</main>
 		</>
 	);
 }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+	// Fetch data from external API
+	const res = await fetch(`https://thronesapi.com/api/v2/Characters`);
+	const movies = await res.json();
+	return {
+		props: { movies }, // will be passed to the page component as props
+	};
+};
