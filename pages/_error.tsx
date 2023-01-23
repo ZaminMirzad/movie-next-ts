@@ -1,4 +1,3 @@
-import {} from 'next';
 import { ErrorProps } from 'next/error';
 
 function Error({ statusCode }: ErrorProps) {

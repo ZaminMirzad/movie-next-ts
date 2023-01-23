@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import { BsSun, BsFillMoonStarsFill } from 'react-icons/bs';
 import { BsCollectionPlayFill } from 'react-icons/bs';
@@ -19,12 +20,12 @@ export default function Header({ mode, toggleMode }: Props) {
 					} `}
 				>
 					<div className='container-fluid h-100'>
-						<a
+						<Link
 							className='navbar-brand bg-danger rounded-1 text-white px-4 fs-5 fw-semibold d-flex align-items-center gap-2 h-100'
-							href='#'
+							href='/'
 						>
 							PLAX <BsCollectionPlayFill fontSize='26' />
-						</a>
+						</Link>
 						<button
 							className='navbar-toggler'
 							type='button'
@@ -42,24 +43,24 @@ export default function Header({ mode, toggleMode }: Props) {
 						>
 							<ul className={`navbar-nav me-auto mb-2 mb-lg-0 `}>
 								<li className='nav-item'>
-									<a
+									<Link
 										className={`nav-link text-${textColor}`}
 										aria-current='page'
-										href='#'
+										href='/movies'
 									>
 										Movies
-									</a>
+									</Link>
 								</li>
 								<li className='nav-item'>
-									<a
+									<Link
 										className={`nav-link text-${textColor}`}
-										href='#'
+										href='/tvs'
 									>
 										Tv-Shows
-									</a>
+									</Link>
 								</li>
 								<li className='nav-item dropdown'>
-									<a
+									<Link
 										className={`nav-link dropdown-toggle text-${textColor}`}
 										href='#'
 										role='button'
@@ -67,37 +68,37 @@ export default function Header({ mode, toggleMode }: Props) {
 										aria-expanded='false'
 									>
 										More
-									</a>
+									</Link>
 									<ul
 										className={`dropdown-menu bg-${bgColor}`}
 										// data-bs-theme='dark'
 									>
 										<li>
-											<a
+											<Link
 												className={`dropdown-item text-${textColor}`}
-												href='#'
+												href='/characters'
 											>
 												Actors
-											</a>
+											</Link>
 										</li>
 										<li>
-											<a
+											<Link
 												className={`dropdown-item text-${textColor}`}
-												href='#'
+												href='/companies'
 											>
 												Production Companies
-											</a>
+											</Link>
 										</li>
 										<li>
 											<hr className='dropdown-divider' />
 										</li>
 										<li>
-											<a
+											<Link
 												className={`dropdown-item text-${textColor}`}
-												href='#'
+												href='/providers'
 											>
 												Stream Providers
-											</a>
+											</Link>
 										</li>
 									</ul>
 								</li>
