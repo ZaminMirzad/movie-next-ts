@@ -1,10 +1,11 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import { Inter } from '@next/font/google';
-import { Header, MovieCard } from '@/components';
-import { useState } from 'react';
+import { Breadcrumb, MovieCard, Sidebar } from '@/components';
+import { useContext, useState } from 'react';
 import { SiHomeassistant } from 'react-icons/si';
 import { GetServerSideProps } from 'next';
+import { ThemeContext } from '@/context/themeContext';
 
 const inter = Inter({ subsets: ['latin'] });
 interface Props {
@@ -18,16 +19,8 @@ interface Props {
 }
 
 export default function Home({ movies }: { movies: Props[] }) {
-	const [mode, setmode] = useState('light');
-	const toggleMode = () => {
-		if (mode === 'light') {
-			setmode('dark');
-			document.body.style.backgroundColor = '#141a4d';
-		} else {
-			setmode('light');
-			document.body.style.backgroundColor = 'white';
-		}
-	};
+	const { theme } = useContext(ThemeContext);
+
 	return (
 		<>
 			<Head>
@@ -45,53 +38,30 @@ export default function Home({ movies }: { movies: Props[] }) {
 					href='/favicon.ico'
 				/>
 			</Head>
-			<main className=''>
-				<Header
-					mode={mode}
-					toggleMode={toggleMode}
-				/>
-				{/* Breadcrumbs */}
-				<div className='row container-fluid mx-auto '>
-					<nav
-						aria-label='breadcrumb'
-						className=' my-2   mx-auto'
-					>
-						<ol className='breadcrumb'>
-							<li className='breadcrumb-item'>
-								<a href='#'>
-									<SiHomeassistant />
-								</a>
-							</li>
-							<li className='breadcrumb-item'>
-								<a href='#'>Movies</a>
-							</li>
-							<li
-								className='breadcrumb-item active'
-								aria-current='page'
-							>
-								Trending
-							</li>
-						</ol>
-					</nav>
+			<div className={`container-fluid bg-${theme === 'dark' && 'secondary'} `}>
+				<div className='row min-vh-100 flex-column flex-md-row '>
+					<Sidebar />
+					<main className='col px-0 flex-grow-1'>
+						{/* Breadcrumb */}
+						<Breadcrumb />
+						{/* Cards */}
+						<div className='row row-cols-1 row-cols-sm-2  row-cols-lg-4 row-cols-md-2 g-4 container-fluid mx-auto py-4 overflow-x-auto'>
+							{movies.map((m) => {
+								return (
+									<MovieCard
+										key={m.id}
+										title={m.fullName}
+										imageUrl={m.imageUrl}
+										badge={m.family}
+										chair={m.title}
+										id={m.id}
+									/>
+								);
+							})}
+						</div>
+					</main>
 				</div>
-				{/* Featured */}
-				{/* Recent */}
-				<div className='row row-cols-1 row-cols-sm-2  row-cols-lg-5 row-cols-md-3 g-4 container-fluid mx-auto'>
-					{movies.map((m) => {
-						return (
-							<MovieCard
-								key={m.id}
-								title={m.fullName}
-								imageUrl={m.imageUrl}
-								badge={m.family}
-								chair={m.title}
-								id={m.id}
-							/>
-						);
-					})}
-				</div>
-				{/* Trends */}
-			</main>
+			</div>
 		</>
 	);
 }

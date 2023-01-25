@@ -23,7 +23,9 @@
   },
   "devDependencies": {
     "@types/bootstrap": "^5.2.6",
+    "@types/react-lazyload": "^3.2.0",
     "popper.js": "^1.16.1",
-    "react-icons": "^4.7.1"
+    "react-icons": "^4.7.1",
+    "react-lazyload": "^3.2.0"
   }
 }
