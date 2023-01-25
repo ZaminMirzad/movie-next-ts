@@ -7,6 +7,7 @@ import {
 	BsTable,
 	BsGrid,
 	BsPeople,
+	BsCollectionPlayFill,
 } from 'react-icons/bs';
 
 export default function Sidebar2() {
@@ -19,17 +20,17 @@ export default function Sidebar2() {
 			>
 				<div className='text-center  p-3'>
 					<img
-						src='https://impreza.us-themes.com/wp-content/uploads/paolo-bendandi-D-8XODEIr_s-unsplash.jpg'
-						alt='profile picture'
+						src='https://avatars.githubusercontent.com/u/122528398?v=4'
+						alt='by @webz-dev'
 						className='img-thumbnail img-fluid rounded-circle my-4 p-1 d-none d-md-block shadow'
 						width='150'
 						height='150'
 					/>
 					<Link
 						href='/'
-						className='navbar-brand mx-0 font-weight-bold  text-nowrap fs-5 text-uppercase '
+						className='navbar-brand mx-0 font-weight-bold  text-nowrap fs-5 text-uppercase d-flex align-items-center gap-3 bg-danger rounded-1 justify-content-center'
 					>
-						MoFlix Movies
+						MoFlix <BsCollectionPlayFill />
 					</Link>
 				</div>
 				<button
