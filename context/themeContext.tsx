@@ -1,3 +1,4 @@
+import { type } from 'os';
 import {
 	FC,
 	ReactElement,
@@ -11,6 +12,9 @@ type ContextType = {
 	theme: 'light' | 'dark';
 	toggleTheme: () => void;
 };
+type ChilrenType = {
+	children: ReactNode;
+};
 
 // Context
 export const ThemeContext = createContext<ContextType>({
@@ -19,7 +23,7 @@ export const ThemeContext = createContext<ContextType>({
 });
 
 // Provider
-export const ThemeProvider: React.FC = ({ children }): JSX.Element => {
+export const ThemeProvider = ({ children }: ChilrenType): JSX.Element => {
 	const [theme, setTheme] = useState<'light' | 'dark'>(
 		(typeof window !== 'undefined' &&
 			(localStorage.getItem('theme') as 'light' | 'dark')) ||
