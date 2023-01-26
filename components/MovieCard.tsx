@@ -6,22 +6,24 @@ import LazyLoad from 'react-lazyload';
 
 type Props = {
 	title: string;
-	badge: string;
+	type: string;
 	imageUrl?: string;
 	chair: string;
 	id: number;
+	vote?: string;
 };
 
 export default function MovieCard({
 	title,
 	imageUrl,
-	badge,
+	type,
 	chair,
 	id,
+	vote,
 }: Props) {
 	return (
 		<>
-			<Link href={`/movie/${id}`}>
+			<Link href={`/${type}/${id}`}>
 				<div
 					className='col h-100'
 					style={{ height: '200px' }}
@@ -56,11 +58,11 @@ export default function MovieCard({
 								className='card-footer text-muted  lh-sm fw-semibold d-flex align-items-center justify-content-between'
 								style={{ fontSize: '14px' }}
 							>
-								<span className='badge bg-primary rounded-0 text-light '>
-									{badge}
+								<span className='badge bg-primary rounded-0 text-light text-uppercase'>
+									{type}
 								</span>
 								<span className='text-warning d-flex align-items-center gap-1 fw-semibold'>
-									5.6 <BsStarHalf />
+									{vote} <BsStarHalf />
 								</span>
 								<button
 									className='btn bg-secondary btn-sm px-2 py-0 rounded-0 d-flex align-items-center'

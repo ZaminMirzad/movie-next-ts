@@ -82,7 +82,7 @@ export default function Home({ movies }: { movies: Props[] }) {
 export const getServerSideProps: GetServerSideProps = async (context) => {
 	// Fetch data from external API
 	const res = await fetch(
-		`${process.env.NEXT_PUBLIC_BASE_URL}/trending/all/week?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
+		`${process.env.NEXT_PUBLIC_BASE_URL}/trending/tv/week?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
 	);
 	const movies = await res.json();
 
