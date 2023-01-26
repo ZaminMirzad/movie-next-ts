@@ -28,7 +28,7 @@ export default function Sidebar2() {
 					/>
 					<Link
 						href='/'
-						className='navbar-brand mx-0 font-weight-bold  text-nowrap fs-5 text-uppercase d-flex align-items-center gap-3 bg-danger rounded-1 justify-content-center'
+						className='navbar-brand mx-0 font-weight-bold  text-nowrap fs-5 text-uppercase d-flex align-items-center px-2 py-1 gap-2 bg-danger rounded-1 justify-content-center'
 					>
 						MoFlix <BsCollectionPlayFill />
 					</Link>
@@ -39,11 +39,13 @@ export default function Sidebar2() {
 					data-toggle='collapse'
 					data-bs-target='#nav'
 					aria-controls='nav'
-					aria-expanded='true'
+					aria-expanded='false'
 					aria-label='Toggle navigation'
 					data-bs-toggle='collapse'
 				>
-					<span className='navbar-toggler-icon'></span>
+					<span className='toggler-icon top-bar'></span>
+					<span className='toggler-icon middle-bar'></span>
+					<span className='toggler-icon bottom-bar'></span>
 				</button>
 				{/* Menu */}
 				<div
