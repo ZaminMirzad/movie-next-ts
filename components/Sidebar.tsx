@@ -14,13 +14,15 @@ import { ImHome } from 'react-icons/im';
 export default function Sidebar2() {
 	const { theme, toggleTheme } = useContext(ThemeContext);
 	const active = useRouter();
+
+	// const activeBg=active.pathname.includes
 	return (
 		<aside className='col-12 col-md-3 col-xl-2 p-0  sticky-top bg-dark'>
 			<nav
-				className='navbar navbar-expand-md navbar-dark bg-dark flex-md-column flex-sm-row d-flex  align-items-center p-0  sticky-top '
+				className='navbar navbar-expand-md navbar-dark bg-dark flex-md-column flex-sm-row d-flex  align-items-center flex-row p-  sticky-top'
 				id='sidebar'
 			>
-				<div className='text-center  p-3 px-3'>
+				<div className='text-center  w-100 d-flex flex-md-column flex-sm-row justify-content-between align-items-center justify-content-center p-sm-2 px-sm-3'>
 					<img
 						src='https://impreza.us-themes.com/wp-content/uploads/paolo-bendandi-D-8XODEIr_s-unsplash.jpg'
 						alt='profile picture'
@@ -34,81 +36,80 @@ export default function Sidebar2() {
 					>
 						MoFlix Movies
 					</Link>
+					{/* nav toggler button */}
+					<button
+						type='button'
+						className='navbar-toggler collapsed border-0 order-0 mx-2'
+						data-toggle='collapse'
+						data-bs-target='#nav'
+						aria-controls='nav'
+						aria-expanded='false'
+						aria-label='Toggle navigation'
+						data-bs-toggle='collapse'
+					>
+						<span className='toggler-icon top-bar'></span>
+						<span className='toggler-icon middle-bar'></span>
+						<span className='toggler-icon bottom-bar'></span>
+					</button>
 				</div>
-				<button
-					type='button'
-					className='navbar-toggler collapsed border-0 order-0 mx-2'
-					data-toggle='collapse'
-					data-bs-target='#nav'
-					aria-controls='nav'
-					aria-expanded='true'
-					aria-label='Toggle navigation'
-					data-bs-toggle='collapse'
-				>
-					<span className='navbar-toggler-icon'></span>
-				</button>
 				{/* Menu */}
 				<div
-					className='collapse navbar-collapse  align-items-start my-1  flex-column justify-content-between p-3'
+					className='collapse navbar-collapse  align-items-start my-1  flex-column justify-content-between  w-100 '
 					id='nav'
 				>
 					<ul className='navbar-nav flex-column w-100 '>
 						<li
 							className={`nav-item bg-${
-								active.asPath === ('/home' || '/') && 'secondary text-white'
+								active.pathname === '/' && 'secondary'
 							} px-sm-3 `}
 						>
 							<Link
-								href='/home'
+								href='/'
 								className={`nav-link gap-1 d-flex align-items-center  p-2 text-${
-									active.asPath === ('/home' || '/') && 'white'
+									active.pathname === '/' && 'white'
 								}`}
-							>
-								<ImHome /> Home
-							</Link>
-						</li>
-						<li
-							className={`nav-item bg-${
-								active.asPath.includes('/movies') && 'secondary text-white'
-							} bg-${
-								active.asPath.includes('/movie') && 'secondary text-white'
-							} px-sm-3 `}
-						>
-							<Link
-								href='/movies'
-								className={`nav-link gap-1 d-flex align-items-center  p-2 text-${
-									active.asPath.includes('/movies') && 'white'
-								} text-${active.asPath.includes('/movie') && 'white'}`}
 							>
 								<BsGrid /> Movies
 							</Link>
 						</li>
-						<li className='nav-item'>
+						<li
+							className={`nav-item bg-${
+								active.pathname === '/tvs' && 'secondary text-white'
+							} px-sm-3`}
+						>
 							<Link
-								href='/tvs'
-								className='nav-link gap-1 d-flex align-items-center'
+								href='/tv'
+								className={`nav-link gap-1 d-flex align-items-center  p-2 text-${
+									active.pathname === '/tv' && 'white'
+								}`}
 							>
 								<BsTable />
 								Tv-Shows
 							</Link>
 						</li>
-						<li className='nav-item'>
+						<li
+							className={`nav-item bg-${
+								active.pathname === '/characters' && 'secondary text-white'
+							} px-sm-3`}
+						>
 							<Link
 								href='/characters'
-								className='nav-link gap-1 d-flex align-items-center'
+								className={`nav-link gap-1 d-flex align-items-center  p-2 text-${
+									active.pathname === '/characters' && 'white'
+								}`}
 							>
 								<BsPeople /> Characters
 							</Link>
 						</li>
 					</ul>
 					{/* Account menu */}
-					<hr className='border w-100 m-1' />
-					<div className='dropdown d-flex justify-content-between order-1 dropup px-lg-1 gap-2 align-items-center my-1'>
+					<hr className='border w-100 my-2' />
+					<div className='dropdown d-flex justify-content-between order-1 dropup px-3 gap-1 align-items-center my-2 w-100 '>
 						<Link
 							href='#'
 							className={`d-flex align-items-center text-${
 								theme === 'light' ? 'light' : 'light'
-							}  dropdown-toggle  pe-2 `}
+							}  dropdown-toggle  pe-1 `}
 							data-bs-toggle='dropdown'
 							aria-expanded='false'
 							data-bs-auto-close='true'
@@ -122,7 +123,7 @@ export default function Sidebar2() {
 							/>
 							<strong>Account</strong>
 						</Link>
-						<ul className='dropdown-menu dropdown-menu-dark text-small shadow  mx-4 mb-2 '>
+						<ul className='dropdown-menu dropdown-menu-dark text-small shadow  mx-2 mb-1'>
 							<li>
 								<Link
 									className='dropdown-item'

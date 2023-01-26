@@ -48,17 +48,14 @@ export default function SearchBar() {
 					</div>
 				</div>
 				{searchResult?.length > 0 && (
-					<div className='bg-dark text-white w-50  my- position-absolute top-100 p-0 overflow-y-scroll search-list rounded mt-1'>
-						<div
-							className=' list-unstyled px-2 my-2 text-capitalize d-flex flex-column gap-1 list-group bg-accen list-group-flus h-100 overflow-y-auto rounded '
-							// style={{ maxHeight: '50% !important', height: '500px' }}
-						>
+					<div className='bg-dark text-white w-50  my- position-absolute top-100 p-0 overflow-y-scroll search-list rounded mt-1  overflow-y-auto'>
+						<div className=' list-unstyled px-2 my-2 text-capitalize d-flex flex-column gap-1 list-group bg-accen list-group-flus h-100  overflow-y-auto rounded '>
 							{searchResult?.map((item) => {
 								return (
 									<a
 										href={`/${item.media_type}/${item.id}`}
 										key={item.id}
-										className=' list-group-item list-group-item-action bg-accent2 text-white d-flex justify-content-between align-items-center position-relative overflow-hidden'
+										className=' list-group-item  list-group-item-action bg-accent2 text-white d-flex justify-content-between align-items-center position-relative overflow-hidden h-100 '
 									>
 										{item.name || item.title}
 										<LazyLoad height={37}>
@@ -66,7 +63,7 @@ export default function SearchBar() {
 												src={`${process.env.NEXT_PUBLIC_PICTURE_URL}/w200${item.backdrop_path}`}
 												alt=''
 												height={37}
-												className='position-absolute top-0 end-0 bottom-0 '
+												className='position-absolute top-0 end-0 bottom-0 h-100 '
 											/>
 										</LazyLoad>
 									</a>

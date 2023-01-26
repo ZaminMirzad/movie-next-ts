@@ -6,6 +6,7 @@ import { useContext, useState } from 'react';
 import { SiHomeassistant } from 'react-icons/si';
 import { GetServerSideProps } from 'next';
 import { ThemeContext } from '@/context/themeContext';
+import { apiKey, baseUrl } from '@/constants/constants';
 
 interface Props {
 	id: number;
@@ -68,6 +69,7 @@ export default function Home({ movies }: { movies: Props[] }) {
 										chair={m.title}
 										id={m.id}
 										vote={Number(m.vote_average).toFixed(0)}
+										badge={m.media_type}
 									/>
 								);
 							})}
@@ -81,9 +83,7 @@ export default function Home({ movies }: { movies: Props[] }) {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 	// Fetch data from external API
-	const res = await fetch(
-		`${process.env.NEXT_PUBLIC_BASE_URL}/trending/tv/week?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
-	);
+	const res = await fetch(`${baseUrl}/trending/tv/week?api_key=${apiKey}`);
 	const movies = await res.json();
 
 	return {
