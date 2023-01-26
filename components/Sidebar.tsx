@@ -35,7 +35,7 @@ export default function Sidebar2() {
 				</div>
 				<button
 					type='button'
-					className='navbar-toggler border-0 order-0 mx-2'
+					className='navbar-toggler collapsed border-0 order-0 mx-2'
 					data-toggle='collapse'
 					data-bs-target='#nav'
 					aria-controls='nav'
