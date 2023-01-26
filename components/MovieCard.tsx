@@ -13,14 +13,7 @@ type Props = {
 	vote?: string;
 };
 
-export default function MovieCard({
-	title,
-	imageUrl,
-	type,
-	chair,
-	id,
-	vote,
-}: Props) {
+export default function MovieCard({ title, imageUrl, type, chair, id }: Props) {
 	return (
 		<>
 			<Link href={`/${type}/${id}`}>
@@ -58,11 +51,11 @@ export default function MovieCard({
 								className='card-footer text-muted  lh-sm fw-semibold d-flex align-items-center justify-content-between'
 								style={{ fontSize: '14px' }}
 							>
-								<span className='badge bg-primary rounded-0 text-light text-uppercase'>
+								<span className='badge bg-primary rounded-0 text-light '>
 									{type}
 								</span>
 								<span className='text-warning d-flex align-items-center gap-1 fw-semibold'>
-									{vote} <BsStarHalf />
+									5.6 <BsStarHalf />
 								</span>
 								<button
 									className='btn bg-secondary btn-sm px-2 py-0 rounded-0 d-flex align-items-center'
