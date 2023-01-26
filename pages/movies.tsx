@@ -6,7 +6,6 @@ import { useContext, useState } from 'react';
 import { SiHomeassistant } from 'react-icons/si';
 import { GetServerSideProps } from 'next';
 import { ThemeContext } from '@/context/themeContext';
-import { apiKey, baseUrl } from '@/constants/constants';
 
 interface Props {
 	id: number;
@@ -60,12 +59,15 @@ export default function Home({ movies }: { movies: Props[] }) {
 									<MovieCard
 										key={m.id}
 										title={m.original_name || m.original_title}
-										imageUrl={baseUrl + '/w300' + m.poster_path}
+										imageUrl={
+											process.env.NEXT_PUBLIC_PICTURE_URL +
+											'/w300' +
+											m.poster_path
+										}
 										type={m.media_type}
 										chair={m.title}
 										id={m.id}
 										vote={Number(m.vote_average).toFixed(0)}
-										badge={m.media_type}
 									/>
 								);
 							})}
@@ -79,7 +81,9 @@ export default function Home({ movies }: { movies: Props[] }) {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 	// Fetch data from external API
-	const res = await fetch(`${baseUrl}/trending/movie/week?api_key=${apiKey}`);
+	const res = await fetch(
+		`${process.env.NEXT_PUBLIC_BASE_URL}/trending/movie/week?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
+	);
 	const movies = await res.json();
 
 	return {

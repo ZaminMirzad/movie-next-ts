@@ -110,11 +110,8 @@ a {
 
 /* search-list */
 .search-list {
-  max-height: 350px;
+  /* background-color: brown; */
+  max-height: 400px !important;
+  /* height: 200px; */
   overflow-y: auto;
-  height: 350px;
-}
-
-.list-group .list-group-item {
-  height: 80px !important;
 }

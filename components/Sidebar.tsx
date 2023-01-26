@@ -15,14 +15,13 @@ export default function Sidebar2() {
 	const { theme, toggleTheme } = useContext(ThemeContext);
 	const active = useRouter();
 
-	// const activeBg=active.pathname.includes
 	return (
 		<aside className='col-12 col-md-3 col-xl-2 p-0  sticky-top bg-dark'>
 			<nav
 				className='navbar navbar-expand-md navbar-dark bg-dark flex-md-column flex-sm-row d-flex  align-items-center flex-row p-  sticky-top'
 				id='sidebar'
 			>
-				<div className='text-center  w-100 d-flex flex-md-column flex-sm-row justify-content-between align-items-center justify-content-center p-sm-2 px-sm-3'>
+				<div className='text-center  w-100 d-flex flex-md-column flex-sm-row justify-content-between align-items-center justify-content-center p-sm-2 px-sm-3 px-3'>
 					<img
 						src='https://impreza.us-themes.com/wp-content/uploads/paolo-bendandi-D-8XODEIr_s-unsplash.jpg'
 						alt='profile picture'
@@ -60,27 +59,43 @@ export default function Sidebar2() {
 					<ul className='navbar-nav flex-column w-100 '>
 						<li
 							className={`nav-item bg-${
-								active.pathname === '/' && 'secondary'
+								active.asPath === ('/home' || '/') && 'secondary text-white'
 							} px-sm-3 `}
 						>
 							<Link
-								href='/'
+								href='/home'
 								className={`nav-link gap-1 d-flex align-items-center  p-2 text-${
-									active.pathname === '/' && 'white'
+									active.asPath === ('/home' || '/') && 'white'
 								}`}
+							>
+								<ImHome /> Home
+							</Link>
+						</li>
+						<li
+							className={`nav-item bg-${
+								active.asPath.includes('/movies') && 'secondary text-white'
+							} bg-${
+								active.asPath.includes('/movie') && 'secondary text-white'
+							} px-sm-3 `}
+						>
+							<Link
+								href='/movies'
+								className={`nav-link gap-1 d-flex align-items-center  p-2 text-${
+									active.asPath.includes('/movies') && 'white'
+								} text-${active.asPath.includes('/movie') && 'white'}`}
 							>
 								<BsGrid /> Movies
 							</Link>
 						</li>
 						<li
 							className={`nav-item bg-${
-								active.pathname === '/tvs' && 'secondary text-white'
+								active.asPath.includes('/tv') && 'secondary text-white'
 							} px-sm-3`}
 						>
 							<Link
 								href='/tv'
 								className={`nav-link gap-1 d-flex align-items-center  p-2 text-${
-									active.pathname === '/tv' && 'white'
+									active.asPath.includes('/tv') && 'white'
 								}`}
 							>
 								<BsTable />
@@ -89,13 +104,13 @@ export default function Sidebar2() {
 						</li>
 						<li
 							className={`nav-item bg-${
-								active.pathname === '/characters' && 'secondary text-white'
+								active.asPath === '/characters' && 'secondary text-white'
 							} px-sm-3`}
 						>
 							<Link
 								href='/characters'
 								className={`nav-link gap-1 d-flex align-items-center  p-2 text-${
-									active.pathname === '/characters' && 'white'
+									active.asPath === '/characters' && 'white'
 								}`}
 							>
 								<BsPeople /> Characters
