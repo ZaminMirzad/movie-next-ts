@@ -8,7 +8,6 @@ import {
 	BsTable,
 	BsGrid,
 	BsPeople,
-	BsCollectionPlayFill,
 } from 'react-icons/bs';
 import { ImHome } from 'react-icons/im';
 
@@ -23,17 +22,17 @@ export default function Sidebar2() {
 			>
 				<div className='text-center  p-3 px-3'>
 					<img
-						src='https://avatars.githubusercontent.com/u/122528398?v=4'
-						alt='by @webz-dev'
+						src='https://impreza.us-themes.com/wp-content/uploads/paolo-bendandi-D-8XODEIr_s-unsplash.jpg'
+						alt='profile picture'
 						className='img-thumbnail img-fluid rounded-circle my-4 p-1 d-none d-md-block shadow'
 						width='150'
 						height='150'
 					/>
 					<Link
 						href='/'
-						className='navbar-brand mx-0 font-weight-bold  text-nowrap fs-5 text-uppercase d-flex align-items-center px-2 py-1 gap-2 bg-danger rounded-1 justify-content-center'
+						className='navbar-brand mx-0 font-weight-bold  text-nowrap fs-5 text-uppercase '
 					>
-						MoFlix <BsCollectionPlayFill />
+						MoFlix Movies
 					</Link>
 				</div>
 				<button
@@ -42,13 +41,11 @@ export default function Sidebar2() {
 					data-toggle='collapse'
 					data-bs-target='#nav'
 					aria-controls='nav'
-					aria-expanded='false'
+					aria-expanded='true'
 					aria-label='Toggle navigation'
 					data-bs-toggle='collapse'
 				>
-					<span className='toggler-icon top-bar'></span>
-					<span className='toggler-icon middle-bar'></span>
-					<span className='toggler-icon bottom-bar'></span>
+					<span className='navbar-toggler-icon'></span>
 				</button>
 				{/* Menu */}
 				<div
