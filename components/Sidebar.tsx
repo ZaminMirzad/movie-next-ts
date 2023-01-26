@@ -41,11 +41,13 @@ export default function Sidebar2() {
 					data-toggle='collapse'
 					data-bs-target='#nav'
 					aria-controls='nav'
-					aria-expanded='true'
+					aria-expanded='false'
 					aria-label='Toggle navigation'
 					data-bs-toggle='collapse'
 				>
-					<span className='navbar-toggler-icon'></span>
+					<span className='toggler-icon top-bar'></span>
+					<span className='toggler-icon middle-bar'></span>
+					<span className='toggler-icon bottom-bar'></span>
 				</button>
 				{/* Menu */}
 				<div
