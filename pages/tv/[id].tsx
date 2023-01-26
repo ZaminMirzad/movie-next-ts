@@ -4,9 +4,9 @@ import { SearchBar, Sidebar } from '@/components';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { TiArrowLeft } from 'react-icons/ti';
+import LazyLoad from 'react-lazyload';
 
 import { ThemeContext } from '@/context/themeContext';
-import LazyLoad from 'react-lazyload';
 
 interface Props {
 	movie: {
@@ -87,7 +87,7 @@ export default function MovieDetails({ movie }: Props) {
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 	// Fetch data from external API
 	const res = await fetch(
-		`${process.env.NEXT_PUBLIC_BASE_URL}/movie/${params?.id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
+		`${process.env.NEXT_PUBLIC_BASE_URL}/tv/${params?.id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
 	);
 	const movie = await res.json();
 	return {

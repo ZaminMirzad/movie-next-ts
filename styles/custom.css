@@ -107,3 +107,11 @@ a {
   align-items: center;
   border-left: 1px solid purple;
 }
+
+/* search-list */
+.search-list {
+  /* background-color: brown; */
+  max-height: 400px !important;
+  /* height: 200px; */
+  overflow-y: auto;
+}
