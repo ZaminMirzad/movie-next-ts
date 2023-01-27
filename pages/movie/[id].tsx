@@ -7,6 +7,7 @@ import { TiArrowLeft } from 'react-icons/ti';
 
 import { ThemeContext } from '@/context/themeContext';
 import LazyLoad from 'react-lazyload';
+import { apiKey, baseUrl, imgBaseUrl } from '@/constants/constants';
 
 interface Props {
 	movie: {
@@ -21,7 +22,6 @@ interface Props {
 
 export default function MovieDetails({ movie }: Props) {
 	const { theme } = useContext(ThemeContext);
-	console.log(movie);
 	const path = useRouter();
 
 	return (
@@ -49,11 +49,7 @@ export default function MovieDetails({ movie }: Props) {
 										</h1>
 										<LazyLoad>
 											<img
-												src={
-													process.env.NEXT_PUBLIC_PICTURE_URL +
-													'/original' +
-													movie.backdrop_path
-												}
+												src={imgBaseUrl + '/original' + movie.backdrop_path}
 												alt={movie.name || movie.title}
 												height={400}
 												width={'80%'}
@@ -86,9 +82,7 @@ export default function MovieDetails({ movie }: Props) {
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 	// Fetch data from external API
-	const res = await fetch(
-		`${process.env.NEXT_PUBLIC_BASE_URL}/movie/${params?.id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
-	);
+	const res = await fetch(`${baseUrl}/movie/${params?.id}?api_key=${apiKey}`);
 	const movie = await res.json();
 	return {
 		props: { movie }, // will be passed to the page component as props

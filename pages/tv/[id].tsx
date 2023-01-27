@@ -7,6 +7,7 @@ import { TiArrowLeft } from 'react-icons/ti';
 import LazyLoad from 'react-lazyload';
 
 import { ThemeContext } from '@/context/themeContext';
+import { imgBaseUrl, baseUrl, apiKey } from '@/constants/constants';
 
 interface Props {
 	movie: {
@@ -21,7 +22,6 @@ interface Props {
 
 export default function MovieDetails({ movie }: Props) {
 	const { theme } = useContext(ThemeContext);
-	console.log(movie);
 	const path = useRouter();
 
 	return (
@@ -35,7 +35,7 @@ export default function MovieDetails({ movie }: Props) {
 							<>
 								<div className='container text-accent1 mt-2'>
 									<Link
-										href={'..'}
+										href={'-1'}
 										className='btn btn-outline-dark  d-flex align-items-center justify-content-center text-light w-25'
 									>
 										<TiArrowLeft className='me-2' />
@@ -49,11 +49,7 @@ export default function MovieDetails({ movie }: Props) {
 										</h1>
 										<LazyLoad>
 											<img
-												src={
-													process.env.NEXT_PUBLIC_PICTURE_URL +
-													'/original' +
-													movie.backdrop_path
-												}
+												src={imgBaseUrl + '/original' + movie.backdrop_path}
 												alt={movie.name || movie.title}
 												height={400}
 												width={'80%'}
@@ -86,9 +82,7 @@ export default function MovieDetails({ movie }: Props) {
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 	// Fetch data from external API
-	const res = await fetch(
-		`${process.env.NEXT_PUBLIC_BASE_URL}/tv/${params?.id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
-	);
+	const res = await fetch(`${baseUrl}/tv/${params?.id}?api_key=${apiKey}`);
 	const movie = await res.json();
 	return {
 		props: { movie }, // will be passed to the page component as props

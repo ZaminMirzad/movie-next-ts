@@ -1,3 +1,9 @@
+import {
+	CHARACTERS_ROUTE,
+	HOME_ROUTE,
+	MOVIES_ROUTE,
+	TV_ROUTE,
+} from '@/constants/routes';
 import { ThemeContext } from '@/context/themeContext';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -45,23 +51,25 @@ export default function Sidebar2() {
 					aria-label='Toggle navigation'
 					data-bs-toggle='collapse'
 				>
-					<span className='navbar-toggler-icon'></span>
+					<span className='toggler-icon top-bar'></span>
+					<span className='toggler-icon middle-bar'></span>
+					<span className='toggler-icon bottom-bar'></span>
 				</button>
 				{/* Menu */}
 				<div
-					className='collapse navbar-collapse  align-items-start my-1  flex-column justify-content-between p-3'
+					className='collapse navbar-collapse  align-items-start my-1  flex-column justify-content-between   w-100'
 					id='nav'
 				>
-					<ul className='navbar-nav flex-column w-100 '>
+					<ul className='navbar-nav flex-column w-100 px-2 px-lg-0'>
 						<li
 							className={`nav-item bg-${
-								active.asPath === ('/home' || '/') && 'secondary text-white'
+								active.asPath === HOME_ROUTE && 'secondary text-white'
 							} px-sm-3 `}
 						>
 							<Link
-								href='/home'
+								href={HOME_ROUTE}
 								className={`nav-link gap-1 d-flex align-items-center  p-2 text-${
-									active.asPath === ('/home' || '/') && 'white'
+									active.asPath === HOME_ROUTE && 'white'
 								}`}
 							>
 								<ImHome /> Home
@@ -69,33 +77,46 @@ export default function Sidebar2() {
 						</li>
 						<li
 							className={`nav-item bg-${
-								active.asPath.includes('/movies') && 'secondary text-white'
+								active.asPath.includes(MOVIES_ROUTE) && 'secondary text-white'
 							} bg-${
 								active.asPath.includes('/movie') && 'secondary text-white'
 							} px-sm-3 `}
 						>
 							<Link
-								href='/movies'
+								href={MOVIES_ROUTE}
 								className={`nav-link gap-1 d-flex align-items-center  p-2 text-${
-									active.asPath.includes('/movies') && 'white'
-								} text-${active.asPath.includes('/movie') && 'white'}`}
+									active.asPath.includes(MOVIES_ROUTE) && 'white'
+								} text-${active.asPath.includes('/movie') && 'white'} `}
 							>
 								<BsGrid /> Movies
 							</Link>
 						</li>
-						<li className='nav-item'>
+						<li
+							className={`nav-item bg-${
+								active.asPath.includes(TV_ROUTE) && 'secondary text-white'
+							}  px-sm-3`}
+						>
 							<Link
-								href='/tvs'
-								className='nav-link gap-1 d-flex align-items-center'
+								href={TV_ROUTE}
+								className={`nav-link gap-1 d-flex align-items-center  p-2 text-${
+									active.asPath.includes(TV_ROUTE) && 'white'
+								}`}
 							>
 								<BsTable />
 								Tv-Shows
 							</Link>
 						</li>
-						<li className='nav-item'>
+						<li
+							className={`nav-item bg-${
+								active.asPath.includes(CHARACTERS_ROUTE) &&
+								'secondary text-white'
+							} px-sm-3`}
+						>
 							<Link
-								href='/characters'
-								className='nav-link gap-1 d-flex align-items-center'
+								href={CHARACTERS_ROUTE}
+								className={`nav-link gap-1 d-flex align-items-center  p-2 text-${
+									active.asPath.includes(CHARACTERS_ROUTE) && 'white'
+								}`}
 							>
 								<BsPeople /> Characters
 							</Link>
@@ -103,7 +124,7 @@ export default function Sidebar2() {
 					</ul>
 					{/* Account menu */}
 					<hr className='border w-100 m-1' />
-					<div className='dropdown d-flex justify-content-between order-1 dropup px-lg-1 gap-2 align-items-center my-1'>
+					<div className='dropdown d-flex justify-content-between order-1 dropup px-lg-2 px-2 gap-2 align-items-center my-1'>
 						<Link
 							href='#'
 							className={`d-flex align-items-center text-${
