@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import { SearchBar, Sidebar } from '@/components';
+import { SearchBar, Sidebar } from '@/components';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { TiArrowLeft } from 'react-icons/ti';
@@ -10,6 +11,14 @@ import LazyLoad from 'react-lazyload';
 import { apiKey, baseUrl, imgBaseUrl } from '@/constants/constants';
 
 interface Props {
+	movie: {
+		name: string;
+		title: string;
+		poster_path: string;
+		backdrop_path: string;
+		vote_average: number;
+		first_air_date: string;
+	};
 	movie: {
 		name: string;
 		title: string;

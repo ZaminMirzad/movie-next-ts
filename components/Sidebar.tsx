@@ -17,7 +17,7 @@ import {
 } from 'react-icons/bs';
 import { ImHome } from 'react-icons/im';
 
-export default function Sidebar2() {
+export default function Sidebar() {
 	const { theme, toggleTheme } = useContext(ThemeContext);
 	const active = useRouter();
 	return (
@@ -51,9 +51,7 @@ export default function Sidebar2() {
 					aria-label='Toggle navigation'
 					data-bs-toggle='collapse'
 				>
-					<span className='toggler-icon top-bar'></span>
-					<span className='toggler-icon middle-bar'></span>
-					<span className='toggler-icon bottom-bar'></span>
+					<span className='navbar-toggler-icon'></span>
 				</button>
 				{/* Menu */}
 				<div
