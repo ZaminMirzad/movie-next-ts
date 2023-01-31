@@ -1,10 +1,10 @@
-import Head from 'next/head';
 import { SearchBar, MovieCard, Sidebar } from '@/components';
 import { useContext, useState } from 'react';
 import { SiHomeassistant } from 'react-icons/si';
 import { GetServerSideProps } from 'next';
 import { ThemeContext } from '@/context/themeContext';
 import { imgBaseUrl, baseUrl, apiKey } from '@/constants/constants';
+import Head from 'next/head';
 
 interface Props {
 	id: number;

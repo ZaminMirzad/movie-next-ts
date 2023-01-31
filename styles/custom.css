@@ -100,6 +100,52 @@ a {
   height: 40vh;
   overflow-y: auto;
   padding: 10px;
-  max-height: 500px;
+  width: 40vh;
+  max-height: 420px;
   /* margin: 10px 0; */
+}
+
+.search-list .list-group-item:first-child .search-list-image {
+  border-radius: 0px 4px 0 0;
+}
+
+.search-list .list-group-item:last-child .search-list-image {
+  border-radius: 0px 0px 4px 0;
+}
+
+/* search-list-image */
+.search-list-image {
+  transition: all ease 0.25s;
+}
+
+.search-list-image:hover {
+  transition: all ease 0.25s;
+  transform: scale(1.1);
+}
+
+/* custom-spinner */
+.custom-spinner {
+  height: '5em';
+  width: '5em'
+}
+
+/* search-icon-click */
+.search-icon-click:hover {
+  cursor: pointer;
+}
+
+/* loader */
+@keyframes spin {
+  100% {
+    rotate: 360deg;
+  }
+}
+
+.loader {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(farthest-side, green 94%, #0000)top/8px 8px no-repeat, conic-gradient(#0000 30%, green);
+  mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+  animation: spin 0.5s infinite linear;
 }

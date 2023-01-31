@@ -14,10 +14,11 @@ import {
 	BsTable,
 	BsGrid,
 	BsPeople,
+	BsCollectionPlayFill,
 } from 'react-icons/bs';
 import { ImHome } from 'react-icons/im';
 
-export default function Sidebar2() {
+export default function Sidebar() {
 	const { theme, toggleTheme } = useContext(ThemeContext);
 	const active = useRouter();
 	return (
@@ -26,9 +27,9 @@ export default function Sidebar2() {
 				className='navbar navbar-expand-md navbar-dark bg-dark flex-md-column flex-sm-row d-flex  align-items-center flex-row p-  sticky-top'
 				id='sidebar'
 			>
-				<div className='text-center  p-3 px-3'>
+				<div className='text-center  p-3 px-3 d-flex flex-column align-items-center'>
 					<img
-						src='https://impreza.us-themes.com/wp-content/uploads/paolo-bendandi-D-8XODEIr_s-unsplash.jpg'
+						src='https://avatars.githubusercontent.com/u/122528398?v=4'
 						alt='profile picture'
 						className='img-thumbnail img-fluid rounded-circle my-4 p-1 d-none d-md-block shadow'
 						width='150'
@@ -36,9 +37,9 @@ export default function Sidebar2() {
 					/>
 					<Link
 						href='/'
-						className='navbar-brand mx-0 font-weight-bold  text-nowrap fs-5 text-uppercase '
+						className='navbar-brand mx-0 font-weight-bold  text-nowrap fs-5 text-uppercase bg-danger w-100 px-2 rounded d-flex align-items-center gap-2 justify-content-center '
 					>
-						MoFlix Movies
+						MoFlix <BsCollectionPlayFill />
 					</Link>
 				</div>
 				<button

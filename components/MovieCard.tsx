@@ -23,7 +23,7 @@ export default function MovieCard({
 }: Props) {
 	return (
 		<>
-			<Link href={`/${type}/${id}`}>
+			<Link href={`/${type.toLocaleLowerCase()}/${id}`}>
 				<div
 					className='col h-100'
 					style={{ height: '200px' }}
@@ -33,7 +33,7 @@ export default function MovieCard({
 							className='card  position-relative h-100 rounded-sm border-primary'
 							style={{
 								backgroundImage: `linear-gradient(to right bottom,rgba(0, 0, 0, 0.99),
-           rgba(0,0,0,0.11)),url(${imageUrl}) `,
+           			rgba(0,0,0,0.11)),url(${imageUrl}) `,
 								backgroundPosition: 'center ',
 								backgroundSize: 'cover',
 								backgroundRepeat: 'no-repeat',
@@ -65,6 +65,8 @@ export default function MovieCard({
 									{vote} <BsStarHalf />
 								</span>
 								<button
+									type='button'
+									name='trailer-button'
 									className='btn bg-secondary btn-sm px-2 py-0 rounded-0 d-flex align-items-center'
 									style={{ fontSize: '16px', height: '22px' }}
 								>
