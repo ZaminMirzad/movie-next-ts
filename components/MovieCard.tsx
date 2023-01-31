@@ -13,7 +13,14 @@ type Props = {
 	vote?: string;
 };
 
-export default function MovieCard({ title, imageUrl, type, chair, id }: Props) {
+export default function MovieCard({
+	title,
+	imageUrl,
+	type,
+	chair,
+	id,
+	vote,
+}: Props) {
 	return (
 		<>
 			<Link href={`/${type.toLocaleLowerCase()}/${id}`}>
@@ -55,7 +62,7 @@ export default function MovieCard({ title, imageUrl, type, chair, id }: Props) {
 									{type}
 								</span>
 								<span className='text-warning d-flex align-items-center gap-1 fw-semibold'>
-									5.6 <BsStarHalf />
+									{vote} <BsStarHalf />
 								</span>
 								<button
 									type='button'

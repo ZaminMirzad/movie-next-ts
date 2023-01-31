@@ -24,7 +24,7 @@ export default function Sidebar() {
 	return (
 		<aside className='col-12 col-md-3 col-xl-2 p-0  sticky-top bg-dark'>
 			<nav
-				className='navbar navbar-expand-md navbar-dark bg-dark flex-md-column flex-sm-row d-flex  align-items-center p-0  sticky-top '
+				className='navbar navbar-expand-md navbar-dark bg-dark flex-md-column flex-sm-row d-flex  align-items-center flex-row p-  sticky-top'
 				id='sidebar'
 			>
 				<div className='text-center  p-3 px-3 d-flex flex-column align-items-center'>
@@ -130,7 +130,7 @@ export default function Sidebar() {
 							href='#'
 							className={`d-flex align-items-center text-${
 								theme === 'light' ? 'light' : 'light'
-							}  dropdown-toggle  pe-2 `}
+							}  dropdown-toggle  pe-1 `}
 							data-bs-toggle='dropdown'
 							aria-expanded='false'
 							data-bs-auto-close='true'
@@ -144,7 +144,7 @@ export default function Sidebar() {
 							/>
 							<strong>Account</strong>
 						</Link>
-						<ul className='dropdown-menu dropdown-menu-dark text-small shadow  mx-4 mb-2 '>
+						<ul className='dropdown-menu dropdown-menu-dark text-small shadow  mx-2 mb-1'>
 							<li>
 								<Link
 									className='dropdown-item'
