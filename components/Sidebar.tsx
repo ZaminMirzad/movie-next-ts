@@ -14,6 +14,7 @@ import {
 	BsTable,
 	BsGrid,
 	BsPeople,
+	BsCollectionPlayFill,
 } from 'react-icons/bs';
 import { ImHome } from 'react-icons/im';
 
@@ -26,9 +27,9 @@ export default function Sidebar() {
 				className='navbar navbar-expand-md navbar-dark bg-dark flex-md-column flex-sm-row d-flex  align-items-center p-0  sticky-top '
 				id='sidebar'
 			>
-				<div className='text-center  p-3 px-3'>
+				<div className='text-center  p-3 px-3 d-flex flex-column align-items-center'>
 					<img
-						src='https://impreza.us-themes.com/wp-content/uploads/paolo-bendandi-D-8XODEIr_s-unsplash.jpg'
+						src='https://avatars.githubusercontent.com/u/122528398?v=4'
 						alt='profile picture'
 						className='img-thumbnail img-fluid rounded-circle my-4 p-1 d-none d-md-block shadow'
 						width='150'
@@ -36,9 +37,9 @@ export default function Sidebar() {
 					/>
 					<Link
 						href='/'
-						className='navbar-brand mx-0 font-weight-bold  text-nowrap fs-5 text-uppercase '
+						className='navbar-brand mx-0 font-weight-bold  text-nowrap fs-5 text-uppercase bg-danger w-100 px-2 rounded d-flex align-items-center gap-2 justify-content-center '
 					>
-						MoFlix Movies
+						MoFlix <BsCollectionPlayFill />
 					</Link>
 				</div>
 				<button
@@ -51,7 +52,9 @@ export default function Sidebar() {
 					aria-label='Toggle navigation'
 					data-bs-toggle='collapse'
 				>
-					<span className='navbar-toggler-icon'></span>
+					<span className='toggler-icon top-bar'></span>
+					<span className='toggler-icon middle-bar'></span>
+					<span className='toggler-icon bottom-bar'></span>
 				</button>
 				{/* Menu */}
 				<div

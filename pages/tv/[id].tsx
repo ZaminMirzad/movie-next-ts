@@ -35,8 +35,8 @@ export default function MovieDetails({ movie }: Props) {
 							<>
 								<div className='container text-accent1 mt-2'>
 									<Link
-										href={'-1'}
-										className='btn btn-outline-dark  d-flex align-items-center justify-content-center text-light w-25'
+										href={'..'}
+										className='btn btn-secondary  d-flex align-items-center justify-content-center text-light w-25'
 									>
 										<TiArrowLeft className='me-2' />
 										Back

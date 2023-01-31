@@ -1,26 +1,26 @@
 import React, { useContext, useState } from 'react';
 import { GetServerSideProps } from 'next';
-import { SearchBar, Sidebar } from '@/components';
+import { SearchBar, Sidebar } from '../../components';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { TiArrowLeft } from 'react-icons/ti';
 
-import { ThemeContext } from '@/context/themeContext';
+import { ThemeContext } from '../../context/themeContext';
 import LazyLoad from 'react-lazyload';
-import { apiKey, baseUrl, imgBaseUrl } from '@/constants/constants';
+import { apiKey, baseUrl, imgBaseUrl } from '../../constants/constants';
 
 interface Props {
-	movie: {
+	person: {
 		name: string;
 		title: string;
 		poster_path: string;
-		backdrop_path: string;
+		profile_path: string;
 		vote_average: number;
 		first_air_date: string;
 	};
 }
 
-export default function MovieDetails({ movie }: Props) {
+export default function Person({ person }: Props) {
 	const { theme } = useContext(ThemeContext);
 	const path = useRouter();
 
@@ -31,7 +31,7 @@ export default function MovieDetails({ movie }: Props) {
 					<Sidebar />
 					<main className='col px-0 flex-grow-1'>
 						<SearchBar />
-						{movie ? (
+						{person ? (
 							<>
 								<div className='container text-accent1 mt-2'>
 									<Link
@@ -45,19 +45,19 @@ export default function MovieDetails({ movie }: Props) {
 								<div className='container text-light py-4 px-2 w-100'>
 									<div className='card'>
 										<h1 className='card-header text-accent1 fs-2'>
-											Full Name: {movie.name || movie.title}
+											Full Name: {person.name || person.title}
 										</h1>
 										<LazyLoad>
 											<img
-												src={imgBaseUrl + '/original' + movie.backdrop_path}
-												alt={movie.name || movie.title}
+												src={imgBaseUrl + '/original' + person.profile_path}
+												alt={person.name || person.title}
 												height={400}
 												width={'80%'}
 												className='img-fluid w-100'
 											/>
 										</LazyLoad>
 										<div className='card-footer text-accent1'>
-											{movie.title}
+											{person.title}
 										</div>
 									</div>
 								</div>
@@ -82,9 +82,9 @@ export default function MovieDetails({ movie }: Props) {
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 	// Fetch data from external API
-	const res = await fetch(`${baseUrl}/movie/${params?.id}?api_key=${apiKey}`);
-	const movie = await res.json();
+	const res = await fetch(`${baseUrl}/person/${params?.id}?api_key=${apiKey}`);
+	const person = await res.json();
 	return {
-		props: { movie }, // will be passed to the page component as props
+		props: { person }, // will be passed to the page component as props
 	};
 };
