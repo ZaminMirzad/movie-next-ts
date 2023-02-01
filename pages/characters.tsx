@@ -61,14 +61,14 @@ export default function Home({ movies }: { movies: Props[] }) {
 					href='/favicon.ico'
 				/>
 			</Head>
-			<div className={`container-fluid bg-${theme === 'dark' && 'secondary'} `}>
+			<div className={`container-fluid bg-${theme === 'dark' && 'dark'} `}>
 				<div className='row min-vh-100 flex-column flex-md-row '>
 					<Sidebar />
-					<main className='col px-0 flex-grow-1 position-relative'>
+					<main className='col px-0 flex-grow-1 position-relative overflow-hidden'>
 						{/* SearchBar */}
 						<SearchBar />
 						{/* Cards */}
-						<div className='row row-cols-1 row-cols-sm-2  row-cols-lg-4 row-cols-md-2 g-4 container-fluid mx-auto py-4 overflow-x-auto'>
+						<div className='row row-cols-1 row-cols-sm-2  row-cols-lg-4 row-cols-md-2 gap-4 container-fluid mx-auto py-4 overflow-x-auto'>
 							{movies?.map((m) => {
 								return (
 									<MovieCard
@@ -78,7 +78,7 @@ export default function Home({ movies }: { movies: Props[] }) {
 										type={m.known_for_department}
 										chair={m.title}
 										id={m.id}
-										vote={Number(m.popularity).toFixed(0)}
+										vote={m.vote_average}
 									/>
 								);
 							})}

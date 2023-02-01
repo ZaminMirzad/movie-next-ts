@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Router from 'next/router';
 import '../dist/custom.css';
 import '../styles/custom.css';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { ThemeProvider } from '@/context/themeContext';
 import { CustomSpinnier } from '@/components/CustomSpinnier';
 
