@@ -1,21 +1,23 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import { Inter } from '@next/font/google';
-import { SearchBar, MovieCard, Sidebar } from '@/components';
+import { SearchBar, MovieCard, Sidebar, Carousel } from '@/components';
 import { useContext, useState } from 'react';
 import { SiHomeassistant } from 'react-icons/si';
+import { HiChevronLeft, HiChevronRight, HiPlus } from 'react-icons/hi';
 import { GetServerSideProps } from 'next';
 import { ThemeContext } from '@/context/themeContext';
 import { apiKey, baseUrl, imgBaseUrl } from '@/constants/constants';
+import LazyLoad from 'react-lazyload';
+import Link from 'next/link';
 
-interface Props {
+export interface Props {
 	id: number;
 	firstName: string;
 	lastName: string;
-	fullName: string;
-	family: string;
 	imageUrl: string;
 	title: string;
+	name: string;
 	original_name: string;
 	original_title: string;
 	backdrop_path: string;
@@ -27,7 +29,7 @@ interface Props {
 	original_language: string;
 }
 
-export default function Home({ movies }: { movies: Props[] }) {
+export default function Home({ mixed }: { mixed: Props[] }) {
 	const { theme } = useContext(ThemeContext);
 
 	return (
@@ -47,27 +49,34 @@ export default function Home({ movies }: { movies: Props[] }) {
 					href='/favicon.ico'
 				/>
 			</Head>
-			<div className={`container-fluid bg-${theme === 'dark' && 'secondary'} `}>
-				<div className='row min-vh-100 flex-column flex-md-row '>
+			<div className={`container-fluid bg-${theme === 'dark' && 'dark'} `}>
+				<div className='row min-vh-100 flex-column flex-md-row'>
 					<Sidebar />
-					<main className='col px-0 flex-grow-1 position-relative'>
+					<main className='col px-0 flex-grow-1 position-relative overflow-hidden'>
 						{/* SearchBar */}
 						<SearchBar />
+						{/* Slider */}
+						<div className='mx-auto px-lg-3 px-2 my-4 w-100'>
+							<Carousel movies={mixed} />
+						</div>
 						{/* Cards */}
-						<div className='row row-cols-1 row-cols-sm-2  row-cols-lg-4 row-cols-md-2 g-4 container-fluid mx-auto py-4 overflow-x-auto'>
-							{movies?.map((m) => {
-								return (
-									<MovieCard
-										key={m.id}
-										title={m.original_name || m.original_title}
-										imageUrl={imgBaseUrl + '/w300' + m.poster_path}
-										type={m.media_type}
-										chair={m.title}
-										id={m.id}
-										vote={Number(m.vote_average).toFixed(0)}
-									/>
-								);
-							})}
+						<div className='px-lg-3 px-2'>
+							<h1 className=' fs-3 text-capitalize text-primary'>popular</h1>
+							<div className='row row-cols-1 row-cols-sm-2  row-cols-lg-4 row-cols-md-2 gap-lg-4 gap-1 container-fluid mx-auto p-0 my-3  '>
+								{mixed?.map((m) => {
+									return (
+										<MovieCard
+											key={m.id}
+											title={m.name || m.title}
+											imageUrl={imgBaseUrl + '/w300' + m.poster_path}
+											type={m.media_type}
+											chair={m.title}
+											id={m.id}
+											vote={m.vote_average}
+										/>
+									);
+								})}
+							</div>
 						</div>
 					</main>
 				</div>
@@ -82,6 +91,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 	const movies = await res.json();
 
 	return {
-		props: { movies: movies.results }, // will be passed to the page component as props
+		props: { mixed: movies.results }, // will be passed to the page component as props
 	};
 };

@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import { Inter } from '@next/font/google';
-import { SearchBar, MovieCard, Sidebar } from '@/components';
+import { SearchBar, MovieCard, Sidebar, Carousel } from '@/components';
 import { useContext, useState } from 'react';
 import { SiHomeassistant } from 'react-icons/si';
 import { GetServerSideProps } from 'next';
@@ -12,8 +12,7 @@ interface Props {
 	id: number;
 	firstName: string;
 	lastName: string;
-	fullName: string;
-	family: string;
+	name: string;
 	imageUrl: string;
 	title: string;
 	original_name: string;
@@ -47,14 +46,18 @@ export default function Home({ movies }: { movies: Props[] }) {
 					href='/favicon.ico'
 				/>
 			</Head>
-			<div className={`container-fluid bg-${theme === 'dark' && 'secondary'} `}>
+			<div className={`container-fluid bg-${theme === 'dark' && 'dark'} `}>
 				<div className='row min-vh-100 flex-column flex-md-row '>
 					<Sidebar />
-					<main className='col px-0 flex-grow-1 position-relative'>
+					<main className='col px-0 flex-grow-1 position-relative overflow-hidden'>
 						{/* SearchBar */}
 						<SearchBar />
+						{/* Carousel */}
+						<div className='mx-auto px-lg-3 px-2 my-4 w-100'>
+							<Carousel movies={movies} />
+						</div>
 						{/* Cards */}
-						<div className='row row-cols-1 row-cols-sm-2  row-cols-lg-4 row-cols-md-2 g-4 container-fluid mx-auto py-4 overflow-x-auto'>
+						<div className='row row-cols-1 row-cols-sm-2  row-cols-lg-4 row-cols-md-2 gap-4 container-fluid mx-auto py-4 overflow-x-auto'>
 							{movies?.map((m) => {
 								return (
 									<MovieCard
@@ -64,7 +67,7 @@ export default function Home({ movies }: { movies: Props[] }) {
 										type={m.media_type}
 										chair={m.title}
 										id={m.id}
-										vote={Number(m.vote_average).toFixed(0)}
+										vote={m.vote_average}
 									/>
 								);
 							})}

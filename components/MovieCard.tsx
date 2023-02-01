@@ -1,6 +1,7 @@
 import React from 'react';
 import { IoPlay } from 'react-icons/io5';
-import { BsStarHalf } from 'react-icons/bs';
+import { BsStarHalf, BsStarFill } from 'react-icons/bs';
+import { HiPlus } from 'react-icons/hi';
 import Link from 'next/link';
 import LazyLoad from 'react-lazyload';
 
@@ -10,7 +11,7 @@ type Props = {
 	imageUrl?: string;
 	chair: string;
 	id: number;
-	vote?: string;
+	vote: number;
 };
 
 export default function MovieCard({
@@ -23,63 +24,55 @@ export default function MovieCard({
 }: Props) {
 	return (
 		<>
-			<Link href={`/${type.toLocaleLowerCase()}/${id}`}>
-				<div
-					className='col h-100'
-					style={{ height: '200px' }}
-				>
-					<LazyLoad height={300}>
-						<div
-							className='card  position-relative h-100 rounded-sm border-primary'
-							style={{
-								backgroundImage: `linear-gradient(to right bottom,rgba(0, 0, 0, 0.99),
-           			rgba(0,0,0,0.11)),url(${imageUrl}) `,
-								backgroundPosition: 'center ',
-								backgroundSize: 'cover',
-								backgroundRepeat: 'no-repeat',
-								height: '100px',
-							}}
-						>
-							<div className='card-body mb-4'>
-								<h1
-									className='card-title text-capitalize text-truncte fs-6 fw-semibold text-light mt-2'
-									style={{ height: '30px' }}
-								>
-									{title}
-								</h1>
-								<p
-									className='card-text text-light'
-									style={{ fontSize: '14px', height: '120px' }}
-								>
-									{chair}
-								</p>
-							</div>
+			<div
+				className='col h-100 p-0'
+				style={{ maxHeight: '418px', maxWidth: '257px' }}
+			>
+				<LazyLoad height={298}>
+					<div
+						className='position-relative h-100 border-1 border-dark p-3'
+						style={{
+							backgroundImage: `linear-gradient(to right bottom,rgba(0, 0, 0, 99),
+           			rgba(0,0,0,0.25)),url(${imageUrl}) `,
+							backgroundPosition: 'center ',
+							backgroundSize: 'cover',
+							backgroundRepeat: 'no-repeat',
+							height: '100px',
+							borderRadius: '15px',
+						}}
+					>
+						<div className=''>
 							<div
-								className='card-footer text-muted  lh-sm fw-semibold d-flex align-items-center justify-content-between'
-								style={{ fontSize: '14px' }}
+								className='card-title text-capitalize text-truncte fs-4 fw-bolder text-light pt-1 '
+								style={{ minHeight: '199px' }}
 							>
-								<span className='badge bg-primary rounded-0 text-light text-uppercase'>
-									{type}
-								</span>
-								<span className='text-warning d-flex align-items-center gap-1 fw-semibold'>
-									{vote} <BsStarHalf />
-								</span>
-								<button
-									type='button'
-									name='trailer-button'
-									className='btn bg-secondary btn-sm px-2 py-0 rounded-0 d-flex align-items-center'
-									style={{ fontSize: '16px', height: '22px' }}
-								>
-									<IoPlay
-										color='white'
-										fontWeight={900}
-									/>
-								</button>
+								{title}
 							</div>
+							<div className='d-flex align-items-center gap-1 fw-semibold text-warning my-3 p-1 rounded-2 blur-15 mix-color-evert w-fit-c'>
+								{Array.from({ length: vote / 2 }, (_, v) => {
+									return <BsStarFill key={v} />;
+								})}
+								{(vote / 2).toFixed(1).toString()[2] === '0' && <BsStarHalf />}
+							</div>
+							<div className=''></div>
 						</div>
-					</LazyLoad>
-				</div>
-			</Link>
+						<div
+							className='card-foote text-muted  lh-sm fw-semibold d-flex align-items-center justify-content-between w-100'
+							style={{ fontSize: '14px' }}
+						>
+							<button className='badge btn btn-secondary bg-opacity-50 rounded-3 text-light text-uppercase d-flex justify-content-center align-items-center fw-bold blur-15 fw-bolder'>
+								<HiPlus fontSize={35} />
+							</button>
+							<Link
+								href={`/${type.toLocaleLowerCase()}/${id}`}
+								className='btn btn-sm p-1 rounded-3 d-flex align-items-center justify-content-center w-75  blur-30 fw-bold fs-4'
+							>
+								Details
+							</Link>
+						</div>
+					</div>
+				</LazyLoad>
+			</div>
 		</>
 	);
 }
