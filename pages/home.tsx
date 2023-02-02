@@ -62,7 +62,7 @@ export default function Home({ mixed }: { mixed: Props[] }) {
 						{/* Cards */}
 						<div className='px-lg-3 px-2'>
 							<h1 className=' fs-3 text-capitalize text-primary'>popular</h1>
-							<div className='row row-cols-1 row-cols-sm-2  row-cols-lg-4 row-cols-md-2 gap-lg-4 gap-1 container-fluid mx-auto p-0 my-3  '>
+							<div className='row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-md-2 row-cols-xl-4 mx-auto p-0 my-3 px-2'>
 								{mixed?.map((m) => {
 									return (
 										<MovieCard

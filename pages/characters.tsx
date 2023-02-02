@@ -68,7 +68,7 @@ export default function Home({ movies }: { movies: Props[] }) {
 						{/* SearchBar */}
 						<SearchBar />
 						{/* Cards */}
-						<div className='row row-cols-1 row-cols-sm-2  row-cols-lg-4 row-cols-md-2 gap-4 container-fluid mx-auto py-4 overflow-x-auto'>
+						<div className='row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-md-2 row-cols-xl-4 mx-auto p-0 my-3 px-2'>
 							{movies?.map((m) => {
 								return (
 									<MovieCard
