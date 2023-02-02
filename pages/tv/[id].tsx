@@ -8,6 +8,7 @@ import LazyLoad from 'react-lazyload';
 
 import { ThemeContext } from '@/context/themeContext';
 import { imgBaseUrl, baseUrl, apiKey } from '@/constants/constants';
+import Image from 'next/image';
 
 interface Props {
 	movie: {
@@ -43,17 +44,22 @@ export default function MovieDetails({ movie }: Props) {
 									</Link>
 								</div>
 								<div className='container text-light py-4 px-2 w-100'>
-									<div className='card'>
+									<div className='card position-relative'>
 										<h1 className='card-header text-accent1 fs-2'>
 											Full Name: {movie.name || movie.title}
 										</h1>
-										<LazyLoad>
-											<img
+										<LazyLoad
+											style={{
+												height: '400px',
+												width: '80%',
+											}}
+										>
+											<Image
 												src={imgBaseUrl + '/original' + movie.backdrop_path}
 												alt={movie.name || movie.title}
-												height={400}
-												width={'80%'}
+												fill
 												className='img-fluid w-100'
+												quality={50}
 											/>
 										</LazyLoad>
 										<div className='card-footer text-accent1'>

@@ -324,3 +324,10 @@ html::-webkit-scrollbar-thumb:hover {
 /* .slider-wrapper:where('active') {
   background-color: #00b9ae !important;
 } */
+
+/* box shadow */
+.shadow-c {
+  -webkit-box-shadow: -14px 9px 98px 34px rgba(0, 0, 0, 0.58);
+  -moz-box-shadow: -14px 9px 98px 34px rgba(0, 0, 0, 0.58);
+  box-shadow: -14px 9px 58px 14px rgba(0, 0, 0, 0.58)
+}

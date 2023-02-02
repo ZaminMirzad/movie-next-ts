@@ -8,6 +8,8 @@ import { TiArrowLeft } from 'react-icons/ti';
 import { ThemeContext } from '@/context/themeContext';
 import LazyLoad from 'react-lazyload';
 import { apiKey, baseUrl, imgBaseUrl } from '@/constants/constants';
+import Image from 'next/image';
+import { CustomSpinnier } from '@/components/CustomSpinnier';
 
 interface Props {
 	movie: {
@@ -33,27 +35,23 @@ export default function MovieDetails({ movie }: Props) {
 						<SearchBar />
 						{movie ? (
 							<>
-								<div className='container text-accent1 mt-2'>
-									<Link
-										href={'..'}
-										className='btn btn-secondary  d-flex align-items-center justify-content-center text-light w-25'
-									>
-										<TiArrowLeft className='me-2' />
-										Back
-									</Link>
-								</div>
-								<div className='container text-light py-4 px-2 w-100'>
-									<div className='card'>
+								<div className='container text-light p-4 w-100 border h-100 w-100 position-relative'>
+									<div className='card position-relative border'>
 										<h1 className='card-header text-accent1 fs-2'>
 											Full Name: {movie.name || movie.title}
 										</h1>
-										<LazyLoad>
-											<img
+										<LazyLoad
+											style={{
+												height: '400px',
+												width: '80%',
+											}}
+										>
+											<Image
 												src={imgBaseUrl + '/original' + movie.backdrop_path}
 												alt={movie.name || movie.title}
-												height={400}
-												width={'80%'}
+												fill
 												className='img-fluid w-100'
+												quality={50}
 											/>
 										</LazyLoad>
 										<div className='card-footer text-accent1'>
@@ -64,13 +62,7 @@ export default function MovieDetails({ movie }: Props) {
 							</>
 						) : (
 							<>
-								<div
-									className='spinner-border text-success'
-									role='status'
-									style={{ height: '5em', width: '5em' }}
-								>
-									<span className='visually-hidden'>Loading...</span>
-								</div>
+								<CustomSpinnier size={20} />
 							</>
 						)}
 					</main>

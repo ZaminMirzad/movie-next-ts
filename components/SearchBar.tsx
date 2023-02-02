@@ -1,4 +1,5 @@
 import { baseUrl, apiKey, imgBaseUrl } from '@/constants/constants';
+import Image from 'next/image';
 import Link from 'next/link';
 import { ChangeEventHandler, useEffect, useMemo, useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
@@ -75,12 +76,13 @@ export default function SearchBar() {
 									{item.name || item.title}
 									<div className='w-25'>
 										{/* <LazyLoad height={36}> */}
-										<img
+										<Image
 											src={`${imgBaseUrl}/w200${item.backdrop_path}`}
 											alt={item.name || item.title}
 											height={36}
 											width={60}
 											className='position-absolute top-0 end-0 bottom-0 h-100 search-list-image'
+											quality={50}
 										/>
 										{/* </LazyLoad> */}
 									</div>

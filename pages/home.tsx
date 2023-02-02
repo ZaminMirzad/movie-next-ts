@@ -68,7 +68,7 @@ export default function Home({ mixed }: { mixed: Props[] }) {
 										<MovieCard
 											key={m.id}
 											title={m.name || m.title}
-											imageUrl={imgBaseUrl + '/w300' + m.poster_path}
+											imageUrl={imgBaseUrl + '/w500' + m.poster_path}
 											type={m.media_type}
 											chair={m.title}
 											id={m.id}

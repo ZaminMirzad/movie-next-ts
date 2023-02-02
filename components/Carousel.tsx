@@ -4,6 +4,7 @@ import React from 'react';
 import { HiChevronLeft, HiChevronRight, HiPlus } from 'react-icons/hi';
 import LazyLoad from 'react-lazyload';
 import { Carousel } from 'react-responsive-carousel';
+import Image from 'next/image';
 
 export interface Props {
 	id: number;
@@ -80,19 +81,27 @@ export const CustomCarousel = ({ movies }: { movies: Props[] }) => {
 					return (
 						<LazyLoad key={m.id}>
 							<div className='slider-wrapper '>
-								<div
-									className='slider-wrappe p-4 d-flex flex-column justify-content-between align-items-start h-100 w-100'
-									style={{
-										backgroundImage: `linear-gradient(to right bottom,rgba(0, 0, 0, 99),
-														rgba(0,0,0,0.25)),url(${imgBaseUrl + '/original' + m.backdrop_path}) `,
-										backgroundPosition: 'center',
-										backgroundSize: 'cover',
-										backgroundRepeat: 'no-repeat',
-										height: '350px',
-										borderRadius: '15px',
-									}}
-								>
-									<h1 className='text-light text-capitalize px-2'>
+								<div className='slider-wrappe p-4 d-flex flex-column justify-content-between align-items-start h-100 w-100 position-relative'>
+									<Image
+										src={imgBaseUrl + '/original' + m.backdrop_path}
+										fill={true}
+										quality={32}
+										style={{
+											objectFit: 'cover',
+											backgroundPosition: 'center ',
+											backgroundSize: 'cover',
+											backgroundRepeat: 'no-repeat',
+											borderRadius: '15px',
+										}}
+										alt={m.title || m.name}
+									/>
+									<h1
+										className='text-light text-capitalize px-2 position-sticky bg-opacity-2 blur-5 rounded-1 bg-dak shadow-c'
+										style={{
+											width: 'fit-content',
+											textShadow: '5px 5px 20px  rgba(0,0,0,0.9) ',
+										}}
+									>
 										{m.title || m.name}
 									</h1>
 									<div className='w-100 d-flex gap-3 justify-content-start align-items-center'>

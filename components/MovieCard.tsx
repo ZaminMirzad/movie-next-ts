@@ -4,11 +4,12 @@ import { BsStarHalf, BsStarFill } from 'react-icons/bs';
 import { HiPlus } from 'react-icons/hi';
 import Link from 'next/link';
 import LazyLoad from 'react-lazyload';
+import Image from 'next/image';
 
 type Props = {
 	title: string;
 	type: string;
-	imageUrl?: string;
+	imageUrl: string;
 	chair: string;
 	id: number;
 	vote: number;
@@ -24,31 +25,39 @@ export default function MovieCard({
 }: Props) {
 	return (
 		<>
-			{/* <div
-				className='col h-100 p-0 flex-grow- mx-auto w-100'
-				// style={{ maxHeight: '418px', maxWidth: '347px' }}
-			> */}
 			<LazyLoad className='col mb-3 flex-grow-1 mx-auto'>
-				<div
-					className='border-1 border-light p-3'
-					style={{
-						backgroundImage: `linear-gradient(to right bottom,rgba(0, 0, 0, 77),
-           			rgba(0,0,0,0.01)),url(${imageUrl}) `,
-						backgroundPosition: 'center ',
-						backgroundSize: 'cover',
-						backgroundRepeat: 'no-repeat',
-						// height: '100px',
-						minWidth: '250px',
-						maxWidth: '340px',
-						borderRadius: '15px',
-					}}
-				>
+				<div className='border-1 border-light p-3 position-relative'>
+					<Image
+						src={imageUrl}
+						fill={true}
+						quality={42}
+						style={{
+							objectFit: 'cover',
+							backgroundPosition: 'center ',
+							backgroundSize: 'cover',
+							backgroundRepeat: 'no-repeat',
+							minWidth: '250px',
+							maxWidth: '340px',
+							borderRadius: '15px',
+						}}
+						alt={title}
+					/>
 					<div className=''>
 						<div
-							className='card-title text-capitalize text-truncte fs-4 fw-bolder text-light pt-1 '
-							style={{ minHeight: '209px' }}
+							className='card-titl position-sticky text-capitalize text-truncte fs-4 fw-bolder text-light pt-1 '
+							style={{
+								minHeight: '209px',
+							}}
 						>
-							{title}
+							<h2
+								className='mix-color-dog text-light bg-opacity-25 rounded-0 p-0 fs-4 blur-5'
+								style={{
+									width: 'fit-content',
+									textShadow: '0px 5px 20px  rgba(0,0,0,0.9) ',
+								}}
+							>
+								{title}
+							</h2>
 						</div>
 						<div className='d-flex align-items-center gap-1 fw-semibold text-warning my-3 p-1 rounded-2 blur-15 mix-color-evert w-fit-c'>
 							{Array.from({ length: vote / 2 }, (_, v) => {
@@ -74,7 +83,6 @@ export default function MovieCard({
 					</div>
 				</div>
 			</LazyLoad>
-			{/* </div> */}
 		</>
 	);
 }
