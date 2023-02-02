@@ -3,7 +3,6 @@ import { IoPlay } from 'react-icons/io5';
 import { BsStarHalf, BsStarFill } from 'react-icons/bs';
 import { HiPlus } from 'react-icons/hi';
 import Link from 'next/link';
-import LazyLoad from 'react-lazyload';
 import Image from 'next/image';
 
 type Props = {
@@ -25,12 +24,12 @@ export default function MovieCard({
 }: Props) {
 	return (
 		<>
-			<LazyLoad className='col mb-3 flex-grow-1 mx-auto'>
+			<div className='col mb-3 flex-grow-1 mx-auto'>
 				<div className='border-1 border-light p-3 position-relative'>
 					<Image
 						src={imageUrl}
 						fill={true}
-						quality={42}
+						quality={20}
 						style={{
 							objectFit: 'cover',
 							backgroundPosition: 'center ',
@@ -82,7 +81,7 @@ export default function MovieCard({
 						</Link>
 					</div>
 				</div>
-			</LazyLoad>
+			</div>
 		</>
 	);
 }
