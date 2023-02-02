@@ -240,13 +240,17 @@ a {
 }
 
 .scroll-sm::-webkit-scrollbar {
-  width: 5px;
-  scrollbar-width: thin;
+  width: 8px;
+  height: 8px;
+  /* scrollbar-width: thin; */
+  border-radius: 8px;
 }
 
 .scroll-sm::-webkit-scrollbar:hover {
   width: 8px;
-  scrollbar-width: thin;
+  height: 8px;
+  /* scrollbar-width: thin; */
+  cursor: pointer;
 }
 
 .scroll-sm::-webkit-scrollbar-track {
@@ -256,27 +260,29 @@ a {
 
 .scroll-sm::-webkit-scrollbar-track:hover {
   background: #21242d;
-  border-radius: 8px;
+  border-radius: 5px;
 }
 
 .scroll-sm::-webkit-scrollbar-thumb {
   background: #00b9ae;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .scroll-sm::-webkit-scrollbar-thumb:hover {
   background: #00b9ae;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 html::-webkit-scrollbar {
   width: 5px;
+  height: 8px;
   scrollbar-width: thin;
 }
 
 html::-webkit-scrollbar:hover {
   width: 8px;
-  /* scrollbar-width: thin; */
+  height: 8px;
+  scrollbar-width: thin;
 }
 
 html::-webkit-scrollbar-track {
@@ -324,3 +330,67 @@ html::-webkit-scrollbar-thumb:hover {
 /* .slider-wrapper:where('active') {
   background-color: #00b9ae !important;
 } */
+
+/* box shadow */
+.shadow-c {
+  -webkit-box-shadow: -14px 9px 98px 34px rgba(0, 0, 0, 0.58);
+  -moz-box-shadow: -14px 9px 98px 34px rgba(0, 0, 0, 0.58);
+  box-shadow: -14px 9px 58px 14px rgba(0, 0, 0, 0.58)
+}
+
+/* gradients */
+.bg-gradient-to-r {
+  background: linear-gradient(to right, rgba(0, 0, 0, 77), rgba(0, 0, 0, 0.1));
+}
+
+.bg-gradient-to-t {
+  background: linear-gradient(to top, rgba(0, 0, 0, 77), rgba(0, 0, 0, 0.1));
+}
+
+.bg-gradient-to-l {
+  background: linear-gradient(to left, rgba(0, 0, 0, 77), rgba(0, 0, 0, 0.1));
+}
+
+.bg-gradient-to-b {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 77), rgba(0, 0, 0, 0.1));
+}
+
+.bg-gradient-to-tr {
+  background: linear-gradient(to top right, rgba(0, 0, 0, 77), rgba(0, 0, 0, 0.1));
+}
+
+.bg-gradient-to-tl {
+  background: linear-gradient(to top left, rgba(0, 0, 0, 77), rgba(0, 0, 0, 0.1));
+}
+
+.bg-gradient-to-br {
+  background: linear-gradient(to bottom right, rgba(0, 0, 0, 77), rgba(0, 0, 0, 0.1));
+}
+
+.bg-gradient-to-bl {
+  background: linear-gradient(to bottom left, rgba(0, 0, 0, 77), rgba(0, 0, 0, 0.1));
+}
+
+/* overflow scrolls */
+.overflow-x-auto {
+  overflow-x: auto;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
+}
+
+/* hovers */
+.hover-visible:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.hover-hidden {
+  opacity: 0;
+}
+
+/* fonts */
+.fs-10 {
+  font-size: 12px;
+}

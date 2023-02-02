@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { GetServerSideProps } from 'next';
 import { SearchBar, Sidebar } from '../../components';
 import Link from 'next/link';
@@ -6,8 +6,8 @@ import { useRouter } from 'next/router';
 import { TiArrowLeft } from 'react-icons/ti';
 
 import { ThemeContext } from '../../context/themeContext';
-import LazyLoad from 'react-lazyload';
 import { apiKey, baseUrl, imgBaseUrl } from '../../constants/constants';
+import Image from 'next/image';
 
 interface Props {
 	person: {
@@ -43,19 +43,24 @@ export default function Person({ person }: Props) {
 									</Link>
 								</div>
 								<div className='container text-light py-4 px-2 w-100'>
-									<div className='card'>
+									<div className='card position-relative w-50'>
 										<h1 className='card-header text-accent1 fs-2'>
 											Full Name: {person.name || person.title}
 										</h1>
-										<LazyLoad>
-											<img
+										<div
+											style={{
+												height: '400px',
+												width: '40%',
+											}}
+										>
+											<Image
 												src={imgBaseUrl + '/original' + person.profile_path}
 												alt={person.name || person.title}
-												height={400}
-												width={'80%'}
+												fill
 												className='img-fluid w-100'
+												quality={50}
 											/>
-										</LazyLoad>
+										</div>
 										<div className='card-footer text-accent1'>
 											{person.title}
 										</div>

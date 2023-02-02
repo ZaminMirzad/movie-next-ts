@@ -1,15 +1,9 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import { Inter } from '@next/font/google';
 import { SearchBar, MovieCard, Sidebar, Carousel } from '@/components';
-import { useContext, useState } from 'react';
-import { SiHomeassistant } from 'react-icons/si';
-import { HiChevronLeft, HiChevronRight, HiPlus } from 'react-icons/hi';
+import { useContext } from 'react';
 import { GetServerSideProps } from 'next';
 import { ThemeContext } from '@/context/themeContext';
 import { apiKey, baseUrl, imgBaseUrl } from '@/constants/constants';
-import LazyLoad from 'react-lazyload';
-import Link from 'next/link';
 
 export interface Props {
 	id: number;
@@ -68,7 +62,7 @@ export default function Home({ mixed }: { mixed: Props[] }) {
 										<MovieCard
 											key={m.id}
 											title={m.name || m.title}
-											imageUrl={imgBaseUrl + '/w300' + m.poster_path}
+											imageUrl={imgBaseUrl + '/w500' + m.poster_path}
 											type={m.media_type}
 											chair={m.title}
 											id={m.id}

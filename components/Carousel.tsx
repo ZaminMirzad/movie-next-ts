@@ -2,8 +2,8 @@ import { imgBaseUrl } from '@/constants/constants';
 import Link from 'next/link';
 import React from 'react';
 import { HiChevronLeft, HiChevronRight, HiPlus } from 'react-icons/hi';
-import LazyLoad from 'react-lazyload';
 import { Carousel } from 'react-responsive-carousel';
+import Image from 'next/image';
 
 export interface Props {
 	id: number;
@@ -78,41 +78,50 @@ export const CustomCarousel = ({ movies }: { movies: Props[] }) => {
 			>
 				{movies?.map((m) => {
 					return (
-						<LazyLoad key={m.id}>
-							<div className='slider-wrapper '>
-								<div
-									className='slider-wrappe p-4 d-flex flex-column justify-content-between align-items-start h-100 w-100'
+						<div
+							key={m.id}
+							className='slider-wrapper '
+						>
+							<div className='slider-wrappe p-4 d-flex flex-column justify-content-between align-items-start h-100 w-100 position-relative'>
+								<Image
+									src={imgBaseUrl + '/original' + m.backdrop_path}
+									fill={true}
+									quality={60}
 									style={{
-										backgroundImage: `linear-gradient(to right bottom,rgba(0, 0, 0, 99),
-														rgba(0,0,0,0.25)),url(${imgBaseUrl + '/original' + m.backdrop_path}) `,
-										backgroundPosition: 'center',
+										objectFit: 'cover',
+										backgroundPosition: 'center ',
 										backgroundSize: 'cover',
 										backgroundRepeat: 'no-repeat',
-										height: '350px',
 										borderRadius: '15px',
 									}}
+									alt={m.title || m.name}
+								/>
+								<h1
+									className='text-light text-capitalize px-2 position-sticky bg-opacity-2 blur-5 rounded-1 bg-dak shadow-c'
+									style={{
+										width: 'fit-content',
+										textShadow: '5px 5px 20px  rgba(0,0,0,0.9) ',
+									}}
 								>
-									<h1 className='text-light text-capitalize px-2'>
-										{m.title || m.name}
-									</h1>
-									<div className='w-100 d-flex gap-3 justify-content-start align-items-center'>
-										<button className='d-flex gap-1 align-items-center btn rounded-3 blur-20 fw-bold text-light'>
-											<HiPlus
-												fontWeight={800}
-												fontSize={24}
-											/>{' '}
-											Watchlist
-										</button>
-										<Link
-											href={`/${m.media_type.toLocaleLowerCase()}/${m.id}`}
-											className='btn fw-bold blur-30 rounded-3'
-										>
-											Watch Now
-										</Link>
-									</div>
+									{m.title || m.name}
+								</h1>
+								<div className='w-100 d-flex gap-3 justify-content-start align-items-center'>
+									<button className='d-flex gap-1 align-items-center btn rounded-3 blur-20 fw-bold text-light'>
+										<HiPlus
+											fontWeight={800}
+											fontSize={24}
+										/>{' '}
+										Watchlist
+									</button>
+									<Link
+										href={`/${m.media_type.toLocaleLowerCase()}/${m.id}`}
+										className='btn fw-bold blur-30 rounded-3'
+									>
+										Watch Now
+									</Link>
 								</div>
 							</div>
-						</LazyLoad>
+						</div>
 					);
 				})}
 			</Carousel>
