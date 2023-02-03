@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettier": "prettier --write ."
   },
   "dependencies": {
     "@next/font": "13.1.4",
@@ -25,6 +26,7 @@
     "@types/bootstrap": "^5.2.6",
     "@types/react-lazyload": "^3.2.0",
     "popper.js": "^1.16.1",
+    "prettier": "2.8.3",
     "react-icons": "^4.7.1",
     "react-lazyload": "^3.2.0",
     "react-responsive-carousel": "^3.2.23"
