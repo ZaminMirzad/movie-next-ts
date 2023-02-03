@@ -1,5 +1,4 @@
 import { ThemeContext } from '@/context/themeContext';
-
 import React, { useContext } from 'react';
 
 interface Props {
