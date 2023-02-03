@@ -9,7 +9,10 @@
 */
 
 :root {
-  --color-l: #f9f9f9 --color-d: #16181e --color-p: #00b9ae --color-s: #21242d
+  --color-l: #f9f9f9;
+  --color-d: #16181e;
+  --color-p: #00b9ae;
+  --color-s: #21242d;
 }
 
 a {
@@ -20,7 +23,7 @@ a {
   width: 20px;
   height: 20px;
   position: relative;
-  transition: .5s ease-in-out;
+  transition: 0.5s ease-in-out;
 }
 
 .navbar-toggler,
@@ -44,18 +47,22 @@ a {
   height: 3px;
   width: 100%;
   background: rgb(131, 58, 180);
-  background: linear-gradient(90deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
   border-radius: 1px;
   opacity: 1;
   left: 0;
   transform: rotate(0deg);
-  transition: .25s ease-in-out;
+  transition: 0.25s ease-in-out;
 }
 
 .middle-bar {
   margin-top: 0px;
 }
-
 
 /* State when the navbar is collapsed */
 
@@ -100,7 +107,12 @@ a {
 
 .navbar-toggler.collapsed .toggler-icon {
   background: rgb(131, 58, 180);
-  background: linear-gradient(90deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
 }
 
 /* search input */
@@ -146,7 +158,7 @@ a {
 /* custom-spinner */
 .custom-spinner {
   height: '5em';
-  width: '5em'
+  width: '5em';
 }
 
 /* search-icon-click */
@@ -165,7 +177,9 @@ a {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: radial-gradient(farthest-side, #00b9ae 94%, #0000)top/8px 8px no-repeat, conic-gradient(#0000 30%, #00b9ae);
+  background: radial-gradient(farthest-side, #00b9ae 94%, #0000) top/8px 8px
+      no-repeat,
+    conic-gradient(#0000 30%, #00b9ae);
   mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
   animation: spin 0.5s infinite linear;
 }
@@ -320,7 +334,6 @@ html::-webkit-scrollbar-thumb:hover {
   /* z-index: 100 !important; */
 }
 
-
 .dot {
   height: 10px;
   width: 10px;
@@ -335,7 +348,7 @@ html::-webkit-scrollbar-thumb:hover {
 .shadow-c {
   -webkit-box-shadow: -14px 9px 98px 34px rgba(0, 0, 0, 0.58);
   -moz-box-shadow: -14px 9px 98px 34px rgba(0, 0, 0, 0.58);
-  box-shadow: -14px 9px 58px 14px rgba(0, 0, 0, 0.58)
+  box-shadow: -14px 9px 58px 14px rgba(0, 0, 0, 0.58);
 }
 
 /* gradients */
@@ -356,19 +369,35 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 .bg-gradient-to-tr {
-  background: linear-gradient(to top right, rgba(0, 0, 0, 77), rgba(0, 0, 0, 0.1));
+  background: linear-gradient(
+    to top right,
+    rgba(0, 0, 0, 77),
+    rgba(0, 0, 0, 0.1)
+  );
 }
 
 .bg-gradient-to-tl {
-  background: linear-gradient(to top left, rgba(0, 0, 0, 77), rgba(0, 0, 0, 0.1));
+  background: linear-gradient(
+    to top left,
+    rgba(0, 0, 0, 77),
+    rgba(0, 0, 0, 0.1)
+  );
 }
 
 .bg-gradient-to-br {
-  background: linear-gradient(to bottom right, rgba(0, 0, 0, 77), rgba(0, 0, 0, 0.1));
+  background: linear-gradient(
+    to bottom right,
+    rgba(0, 0, 0, 77),
+    rgba(0, 0, 0, 0.1)
+  );
 }
 
 .bg-gradient-to-bl {
-  background: linear-gradient(to bottom left, rgba(0, 0, 0, 77), rgba(0, 0, 0, 0.1));
+  background: linear-gradient(
+    to bottom left,
+    rgba(0, 0, 0, 77),
+    rgba(0, 0, 0, 0.1)
+  );
 }
 
 /* overflow scrolls */
@@ -380,17 +409,52 @@ html::-webkit-scrollbar-thumb:hover {
   overflow-y: auto;
 }
 
-/* hovers */
+/* visibility hovers */
 .hover-visible:hover {
   opacity: 1;
   cursor: pointer;
+  transition: opacity 250ms ease-in-out;
 }
 
 .hover-hidden {
   opacity: 0;
+  transition: opacity 250ms ease-in-out;
 }
 
 /* fonts */
 .fs-10 {
   font-size: 12px;
+}
+/* z-index */
+.z-10 {
+  z-index: 10;
+}
+.z-20 {
+  z-index: 20;
+}
+.z-50 {
+  z-index: 50;
+}
+.z-100 {
+  z-index: 100;
+}
+.z-999 {
+  z-index: 999;
+}
+
+/* bg-object-fit */
+.object-cover {
+  object-fit: cover;
+}
+.object-contain {
+  object-fit: contain;
+}
+.object-fill {
+  object-fit: fill;
+}
+.object-center {
+  object-position: center;
+}
+.bg-norepeat {
+  background-repeat: no-repeat;
 }
