@@ -23,9 +23,9 @@ export default function MovieCard({
 }: Props) {
   return (
     <>
-      <div className="col mb-3 flex-grow-1 mx-auto">
+      <div className="col mb-3 flex-grow-1 mx-auto rounded-4">
         <div
-          className="position-relative overflow-hidden w-100 h-100 border border-dark rounded-4 "
+          className="position-relative overflow-hidden  rounded-4 border border-secondary"
           style={{
             minWidth: '260px',
             maxWidth: '340px',
@@ -36,16 +36,16 @@ export default function MovieCard({
             alt={title}
             fill={true}
             quality={70}
-            className="w-100 h-100 rounded-4 object-cover object-center bg-norepeat"
+            className="object-cover object-center bg-norepeat"
           />
-          <div className="position-sticky p-3 bg-gradient-to-br h-100 w-100 rounded-4">
-            <div className="">
-              <div
-                className="text-capitalize fs-4 fw-bolder text-light pt-1 "
-                style={{
-                  minHeight: '209px',
-                }}
-              >
+          <div className="position-sticky p-3 bg-gradient-to-br h-100 w-100">
+            <div
+              className="d-flex flex-column"
+              style={{
+                minHeight: '249px',
+              }}
+            >
+              <div className="text-capitalize fs-4 fw-bolder text-light pt-1 flex-grow-1 ">
                 <h2 className="fs-4">{title}</h2>
               </div>
               {vote && (
@@ -62,7 +62,7 @@ export default function MovieCard({
               <div className=""></div>
             </div>
             <div
-              className="card-foote text-muted  lh-sm fw-semibold d-flex align-items-center justify-content-between w-100"
+              className="text-muted  lh-sm fw-semibold d-flex align-items-center justify-content-between w-100"
               style={{ fontSize: '14px' }}
             >
               <button className="badge btn btn-secondary bg-opacity-50 rounded-3 text-light text-uppercase d-flex justify-content-center align-items-center fw-bold blur-15 fw-bolder">

@@ -2,12 +2,18 @@
   "name": "movies-next-ts",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=14.0.0",
+    "yarn": ">=1.22.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier": "prettier --write ."
+    "prepare": "husky install",
+    "prettier": "prettier --write .",
+    "type-check": "tsc"
   },
   "dependencies": {
     "@next/font": "13.1.4",
@@ -15,20 +21,22 @@
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
     "bootstrap": "^5.2.3",
-    "eslint": "8.32.0",
-    "eslint-config-next": "13.1.4",
+    "eslint": "^8.33.0",
+    "eslint-config-next": "^13.1.6",
     "next": "13.1.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "4.9.4"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
     "@types/bootstrap": "^5.2.6",
     "@types/react-lazyload": "^3.2.0",
+    "husky": "^8.0.0",
     "popper.js": "^1.16.1",
     "prettier": "2.8.3",
     "react-icons": "^4.7.1",
-    "react-lazyload": "^3.2.0",
     "react-responsive-carousel": "^3.2.23"
   }
 }
