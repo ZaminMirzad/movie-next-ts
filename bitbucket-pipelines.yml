@@ -1,0 +1,13 @@
+piplines:
+  branches: #branch specific pipeline configuration
+    main: #main pipeline
+      -steps:
+        name: Build and test the application
+        image: node:latest
+        script:
+          - yarn
+          - yarn lint
+          - yarn prettier
+          - yarn build
+  default: #default configuration for the branches that don't have pipeline configs
+  custom: #pipelines that only run manually
