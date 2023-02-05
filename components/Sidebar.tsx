@@ -12,8 +12,6 @@ import { useContext } from 'react';
 import {
   BsFillMoonStarsFill,
   BsSun,
-  BsTable,
-  BsGrid,
   BsPeople,
   BsCollectionPlayFill,
 } from 'react-icons/bs';

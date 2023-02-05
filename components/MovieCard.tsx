@@ -48,18 +48,22 @@ export default function MovieCard({
               <div className="text-capitalize fs-4 fw-bolder text-light pt-1 flex-grow-1 ">
                 <h2 className="fs-4">{title}</h2>
               </div>
-              {vote && (
-                <div className="d-flex align-items-center gap-1 fw-semibold text-warning my-3 p-1 rounded-2 blur-1 mix-color-evert w-fit-c fs-10">
-                  {Array.from({ length: vote / 2 }, (_, v) => {
-                    return <BsStarFill key={v} />;
-                  })}
-                  {(vote / 2).toFixed(1).toString()[2] >= (5).toString() && (
-                    <BsStarHalf />
-                  )}
-                  {(vote / 2).toFixed(1)} / 5
-                </div>
-              )}
-              <div className=""></div>
+              <div className="d-flex gap-2 align-items-center">
+                {vote && (
+                  <div className="d-flex align-items-center gap-1 fw-semibold text-warning my-3 p-1 rounded-2 blur-1 mix-color-evert w-fit-c fs-10">
+                    {Array.from({ length: vote / 2 }, (_, v) => {
+                      return <BsStarFill key={v} />;
+                    })}
+                    {(vote / 2).toFixed(1).toString()[2] >= (5).toString() && (
+                      <BsStarHalf />
+                    )}
+                    {(vote / 2).toFixed(1)} / 5
+                  </div>
+                )}
+                <p className="text-primary fs-10 fw-bold text-uppercase border border-info rounded-1 px-1 p-0 m-0 blur-15 bg-gradient-to-l">
+                  {type}
+                </p>
+              </div>
             </div>
             <div
               className="text-muted  lh-sm fw-semibold d-flex align-items-center justify-content-between w-100"

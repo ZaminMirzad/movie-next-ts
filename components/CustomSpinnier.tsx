@@ -1,5 +1,5 @@
-import { ThemeContext } from '@/context/themeContext';
 import React, { useContext } from 'react';
+import { ThemeContext } from '@/context/themeContext';
 
 interface Props {
   size: number;

@@ -3,12 +3,29 @@ import { useContext } from 'react';
 import { GetServerSideProps } from 'next';
 
 // local imports
-import { SearchBar, MovieCard, Sidebar, Carousel } from '@/components';
+import {
+  SearchBar,
+  Sidebar,
+  Carousel,
+  HorizontalContainer,
+} from '@/components';
 import { ThemeContext } from '@/context/themeContext';
-import { imgBaseUrl, baseUrl, apiKey } from '@/utils/constants';
+import { baseUrl, apiKey } from '@/utils/constants';
 import { IMovie } from '@/utils/types';
 
-export default function Home({ movies }: { movies: IMovie[] }) {
+interface IProps {
+  trendings: IMovie[];
+  populars: IMovie[];
+  upcomings: IMovie[];
+  nowPlayings: IMovie[];
+}
+
+export default function Home({
+  trendings,
+  populars,
+  upcomings,
+  nowPlayings,
+}: IProps) {
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -30,23 +47,32 @@ export default function Home({ movies }: { movies: IMovie[] }) {
             <SearchBar />
             {/* Carousel */}
             <div className="mx-auto px-lg-3 px-2 my-4 w-100">
-              <Carousel movies={movies} />
+              <Carousel movies={trendings} />
             </div>
-            {/* Cards */}
-            <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-md-2 row-cols-xl-4 mx-auto p-0 my-3 px-2">
-              {movies?.map((m) => {
-                return (
-                  <MovieCard
-                    key={m.id}
-                    title={m.original_name || m.original_title}
-                    imageUrl={imgBaseUrl + '/w300' + m.poster_path}
-                    type={m.media_type}
-                    id={m.id}
-                    vote={m.vote_average}
-                  />
-                );
-              })}
-            </div>
+            {/* Trending Movies */}
+            <HorizontalContainer
+              movieTvList={trendings}
+              title={'Trends of the Week ⚡⚡⚡'}
+              type="movie"
+            />
+            {/* Now Playing Movies */}
+            <HorizontalContainer
+              movieTvList={nowPlayings}
+              title={'In Theatres Now 🥤🍿'}
+              type="movie"
+            />
+            {/* Upcoming Movies */}
+            <HorizontalContainer
+              movieTvList={upcomings}
+              title={'Coming Soon... ⏳⏳⏳'}
+              type="movie"
+            />
+            {/* Popular Movies */}
+            <HorizontalContainer
+              movieTvList={populars}
+              title={'Most Popular Movies ✨✨✨'}
+              type="movie"
+            />
           </main>
         </div>
       </div>
@@ -54,12 +80,29 @@ export default function Home({ movies }: { movies: IMovie[] }) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async () => {
   // Fetch data from external API
-  const res = await fetch(`${baseUrl}/trending/movie/week?api_key=${apiKey}`);
-  const movies = await res.json();
+  const trendingRes = await fetch(
+    `${baseUrl}/trending/movie/week?api_key=${apiKey}`
+  );
+  const popularsRes = await fetch(`${baseUrl}/movie/popular?api_key=${apiKey}`);
+  const upcomingRes = await fetch(
+    `${baseUrl}/movie/upcoming?api_key=${apiKey}`
+  );
+  const nowPlayingRes = await fetch(
+    `${baseUrl}/movie/now_playing?api_key=${apiKey}`
+  );
+  const trendings = await trendingRes.json();
+  const populars = await popularsRes.json();
+  const upcomings = await upcomingRes.json();
+  const nowPlayings = await nowPlayingRes.json();
 
   return {
-    props: { movies: movies.results }, // will be passed to the page component as props
+    props: {
+      trendings: trendings.results,
+      populars: populars.results,
+      upcomings: upcomings.results,
+      nowPlayings: nowPlayings.results,
+    }, // will be passed to the page component as props
   };
 };
