@@ -9,6 +9,7 @@ This is a movie website project build [Next.js](https://nextjs.org/)
  <img src='https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white'/>
  <img src='https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E'/>
   
+![image](https://user-images.githubusercontent.com/91832381/216827823-7de5bea2-7cf0-40e5-8431-c1b7620923b2.png)
 
 ## Getting Started
 
