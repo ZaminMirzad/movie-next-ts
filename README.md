@@ -1,27 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a movie website project build [Next.js](https://nextjs.org/)
+
+## Technologies used:
+
+ [<img src='https://img.shields.io/badge/React JS-20232A?style=for-the-badge&logo=react&logoColor=61DAFB'  />](https://reactjs.org/)
+ [<img src='https://img.shields.io/badge/Next JS-593D88?style=for-the-badge&logo=next-js&logoColor=white'  />](https://redux-toolkit.js.org/)
+ [<img src='https://img.shields.io/badge/Bootstrap 5-593D88?style=for-the-badge&logo=bootstrap&logoColor=61DAFB'  />](https://tailwindcss.com/docs/installation)
+ [<img src='https://img.shields.io/badge/TMDB API-01B4E4?color=blue&style=for-the-badge&logo=themoviedatabase&logoColor=white'/>](https://developers.themoviedb.org/3/)
+ <img src='https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white'/>
+ <img src='https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E'/>
+  
 
 ## Getting Started
 
-First, run the development server:
+To use it locally First clone, install packages and run the development server:
 
 ```bash
-npm run dev
-# or
+git clone https://github.com/ZaminMirzad/movie-website-clone.git
+yarn
 yarn dev
 # or
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
+And it will run on [https://localhost:3000](https://localhost:3000)
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
