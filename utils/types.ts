@@ -109,6 +109,9 @@ export interface ITv {
   budget: number;
   type: string;
   genres: IGenre[];
+  videos: {
+    results: IVideo[];
+  };
   created_by: ICreatedBy[];
   episode_run_time: [number];
   in_production: boolean;

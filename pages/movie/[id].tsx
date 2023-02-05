@@ -1,7 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import { MovieCard, SearchBar, Sidebar } from '@/components';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
 import Head from 'next/head';
@@ -13,6 +12,7 @@ import { apiKey, baseUrl, imgBaseUrl } from '@/utils/constants';
 import { CustomSpinnier } from '@/components/CustomSpinnier';
 import { ICast, ICrew, IMovie } from '@/utils/types';
 import { CHARACTER_ROUTE } from '@/utils/routes';
+import 'react-responsive-modal/styles.css';
 
 interface Props {
   movie: IMovie;
@@ -24,16 +24,19 @@ interface Props {
 }
 
 export default function MovieDetails({ movie, casts, recommendations }: Props) {
+  const [isOpen, setIsOpen] = useState(false);
   const { theme } = useContext(ThemeContext);
-  const path = useRouter();
-  console.log(movie);
   return (
     <>
       <Head>
         <title>MOFLIX - {movie.title}</title>
         <meta name="description" content={movie.overview} />
       </Head>
-      <div className={`container-fluid bg-${theme === 'dark' && 'secondary'} `}>
+      <div
+        className={`container-fluid bg-${
+          theme === 'dark' && 'secondary'
+        } position-relative`}
+      >
         <div className="row min-vh-100 flex-column flex-md-row ">
           <Sidebar />
           <main className="col p-0 flex-grow-1">
@@ -95,7 +98,12 @@ export default function MovieDetails({ movie, casts, recommendations }: Props) {
                             </div>
                             {/* watch trailer buttons */}
                             <div className="d-flex align-items-center gap-2 pb-lg-2 pb-1">
-                              <button className="btn btn-secondary">
+                              <button
+                                className="btn btn-secondary"
+                                data-bs-target="#videoModal"
+                                data-bs-toggle="modal"
+                                onClick={() => setIsOpen(true)}
+                              >
                                 Watch Trailer
                               </button>
                               <button className="btn btn-primary">
@@ -290,13 +298,43 @@ export default function MovieDetails({ movie, casts, recommendations }: Props) {
           </main>
         </div>
       </div>
+      {/* Trailer modal */}
+      <div
+        className="modal fade "
+        tabIndex={-1}
+        aria-hidden="true"
+        id="videoModal"
+        onClick={() => setIsOpen(false)}
+      >
+        <div className="modal-dialog modal-dialog-centered min-vw-100 ">
+          {isOpen && (
+            <div className="modal-content border w-md-95 w-75 mx-auto">
+              <div className="modal-body ratio ratio-16x9 border rounded overflow-hidden ">
+                <iframe
+                  src={`https://www.youtube.com/embed/${
+                    movie.videos?.results.filter(
+                      (video) => video.type.toLowerCase() === 'trailer'
+                    )[0].key
+                  }?autoplay=1`}
+                  allowFullScreen
+                  className="h-100 w-100 ratio ratio-16x9"
+                  loading="eager"
+                  id="videoFrame"
+                  title={movie.title}
+                  placeholder={`${imgBaseUrl}/w500/x6FsYvt33846IQnDSFxla9j0RX8.jpg`}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
     </>
   );
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   // Fetch data from external API
-  const res = await fetch(
+  const movieRes = await fetch(
     `${baseUrl}/movie/${params?.id}?api_key=${apiKey}&append_to_response=videos,images`
   );
   const castRes = await fetch(
@@ -305,7 +343,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const recommended = await fetch(
     `${baseUrl}/movie/${params?.id}/recommendations?api_key=${apiKey}`
   );
-  const movie = await res.json();
+  const movie = await movieRes.json();
   const casts = await castRes.json();
   const recommendations = await recommended.json();
   return {

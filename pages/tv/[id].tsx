@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -22,6 +22,7 @@ interface Props {
 }
 
 export default function MovieDetails({ tv, casts, recommendations }: Props) {
+  const [isOpen, setIsOpen] = useState(false);
   const { theme } = useContext(ThemeContext);
   return (
     <>
@@ -89,7 +90,12 @@ export default function MovieDetails({ tv, casts, recommendations }: Props) {
                             </div>
                             {/* watch trailer buttons */}
                             <div className="d-flex align-items-center gap-2 pb-lg-2 pb-1">
-                              <button className="btn btn-secondary">
+                              <button
+                                className="btn btn-secondary"
+                                data-bs-target="#videoModal"
+                                data-bs-toggle="modal"
+                                onClick={() => setIsOpen(true)}
+                              >
                                 Watch Trailer
                               </button>
                               <button className="btn btn-primary">
@@ -283,6 +289,36 @@ export default function MovieDetails({ tv, casts, recommendations }: Props) {
               </>
             )}
           </main>
+        </div>
+      </div>
+      {/* Trailer modal */}
+      <div
+        className="modal fade "
+        tabIndex={-1}
+        aria-hidden="true"
+        id="videoModal"
+        onClick={() => setIsOpen(false)}
+      >
+        <div className="modal-dialog modal-dialog-centered min-vw-100 ">
+          {isOpen && (
+            <div className="modal-content border w-md-95 w-75 mx-auto">
+              <div className="modal-body ratio ratio-16x9 border rounded overflow-hidden ">
+                <iframe
+                  src={`https://www.youtube.com/embed/${
+                    tv.videos?.results.filter(
+                      (video) => video.type.toLowerCase() === 'trailer'
+                    )[0].key
+                  }?autoplay=1`}
+                  allowFullScreen
+                  className="h-100 w-100 ratio ratio-16x9"
+                  loading="eager"
+                  id="videoFrame"
+                  title={tv.title}
+                  placeholder={`${imgBaseUrl}/w500/x6FsYvt33846IQnDSFxla9j0RX8.jpg`}
+                />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>

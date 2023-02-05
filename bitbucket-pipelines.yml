@@ -9,5 +9,30 @@ pipelines:
             - yarn lint
             - yarn prettier
             - yarn build
+    develop: #develop pipeline
+      - step::
+          name: Build the application
+          image: node:latest
+          script:
+            - yarn
+            - yarn lint
+            - yarn prettier
+            - yarn build
 #  default: #default configuration for the branches that don't have pipeline configs
 #  custom: #pipelines that only run manually
+#    production:
+#      - step:
+#          name: Build the application
+#          image: node:latest
+#          script:
+#            - yarn
+#            - yarn lint
+#            - yarn prettier
+#            - yarn build
+#          artifacts:
+#            - build/**
+#      - step:
+#          name: Deploy the application to S3
+#          deployment: production
+#          script:
+#            - pipe:

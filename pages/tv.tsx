@@ -3,18 +3,29 @@ import { useContext } from 'react';
 import { GetServerSideProps } from 'next';
 
 // local imports
-import { SearchBar, MovieCard, Sidebar, Carousel } from '@/components';
+import {
+  SearchBar,
+  Sidebar,
+  Carousel,
+  HorizontalContainer,
+} from '@/components';
 import { ThemeContext } from '@/context/themeContext';
-import { apiKey, baseUrl, imgBaseUrl } from '@/utils/constants';
+import { apiKey, baseUrl } from '@/utils/constants';
 import { ITv } from '@/utils/types';
 
-export default function Home({ tvs }: { tvs: ITv[] }) {
+interface IProps {
+  trendings: ITv[];
+  populars: ITv[];
+  topRated: ITv[];
+}
+
+export default function Home({ trendings, populars, topRated }: IProps) {
   const { theme } = useContext(ThemeContext);
 
   return (
     <>
       <Head>
-        <title>Moflix Movies | Tv Shows</title>
+        <title>Moflix - Tv Shows</title>
         <meta
           name="description"
           content="Moflix movies shares update of movies & tv shows free to watch trailers and download"
@@ -30,23 +41,20 @@ export default function Home({ tvs }: { tvs: ITv[] }) {
             <SearchBar />
             {/* Carousel */}
             <div className="mx-auto px-lg-3 px-2 my-4 w-100">
-              <Carousel movies={tvs} />
+              <Carousel movies={trendings} />
             </div>
-            {/* Cards */}
-            <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-md-2 row-cols-xl-4 mx-auto p-0 my-3 px-2">
-              {tvs?.map((m) => {
-                return (
-                  <MovieCard
-                    key={m.id}
-                    title={m.original_name || m.original_title}
-                    imageUrl={imgBaseUrl + '/w300' + m.poster_path}
-                    type={m.media_type}
-                    id={m.id}
-                    vote={m.vote_average}
-                  />
-                );
-              })}
-            </div>
+            {/* On Air TVs */}
+            <HorizontalContainer
+              movieTvList={topRated}
+              title="Loved by Majority 🍿🥤🍾"
+              type="tv"
+            />
+            {/* Popular TVs */}
+            <HorizontalContainer
+              movieTvList={populars}
+              title="Most Popular Shows ✨✨✨"
+              type="tv"
+            />
           </main>
         </div>
       </div>
@@ -54,12 +62,22 @@ export default function Home({ tvs }: { tvs: ITv[] }) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async () => {
   // Fetch data from external API
-  const res = await fetch(`${baseUrl}/trending/tv/week?api_key=${apiKey}`);
-  const tvs = await res.json();
+  const trendingsRes = await fetch(
+    `${baseUrl}/trending/tv/week?api_key=${apiKey}`
+  );
+  const popularsRes = await fetch(`${baseUrl}/tv/popular?api_key=${apiKey}`);
+  const topRatedRes = await fetch(`${baseUrl}/tv/top_rated?api_key=${apiKey}`);
+  const trendings = await trendingsRes.json();
+  const populars = await popularsRes.json();
+  const topRated = await topRatedRes.json();
 
   return {
-    props: { tvs: tvs.results }, // will be passed to the page component as props
+    props: {
+      trendings: trendings.results,
+      populars: populars.results,
+      topRated: topRated.results,
+    }, // will be passed to the page component as props
   };
 };

@@ -6,25 +6,12 @@ import { ThemeContext } from '@/context/themeContext';
 import { apiKey, baseUrl, imgBaseUrl } from '@/utils/constants';
 import { IMovie, ITv } from '@/utils/types';
 
-export interface Props {
-  id: number;
-  firstName: string;
-  lastName: string;
-  imageUrl: string;
-  title: string;
-  name: string;
-  original_name: string;
-  original_title: string;
-  backdrop_path: string;
-  media_type: string;
-  poster_path: string;
-  vote_average: number;
-  overview: string;
-  first_air_date: string;
-  original_language: string;
+export interface IProps {
+  weekTrending: IMovie[] | ITv[];
+  dayTrending: IMovie[] | ITv[];
 }
 
-export default function Home({ mixed }: { mixed: ITv[] | IMovie[] }) {
+export default function Home({ weekTrending, dayTrending }: IProps) {
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -46,13 +33,13 @@ export default function Home({ mixed }: { mixed: ITv[] | IMovie[] }) {
             <SearchBar />
             {/* Slider */}
             <div className="mx-auto px-lg-3 px-2 my-4 w-100">
-              <Carousel movies={mixed} />
+              <Carousel movies={dayTrending} />
             </div>
             {/* Cards */}
             <div className="px-lg-3 px-2">
               <h1 className=" fs-3 text-capitalize text-primary">popular</h1>
               <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-md-2 row-cols-xl-4 mx-auto p-0 my-3 px-2">
-                {mixed?.map((m) => {
+                {weekTrending?.map((m: IMovie | ITv) => {
                   return (
                     <MovieCard
                       key={m.id}
@@ -73,12 +60,21 @@ export default function Home({ mixed }: { mixed: ITv[] | IMovie[] }) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async () => {
   // Fetch data from external API
-  const res = await fetch(`${baseUrl}/trending/all/week?api_key=${apiKey}`);
-  const movies = await res.json();
+  const weekTrendingRes = await fetch(
+    `${baseUrl}/trending/all/week?api_key=${apiKey}`
+  );
+  const dayTrendingRes = await fetch(
+    `${baseUrl}/trending/all/day?api_key=${apiKey}`
+  );
+  const weekTrending = await weekTrendingRes.json();
+  const dayTrending = await dayTrendingRes.json();
 
   return {
-    props: { mixed: movies.results }, // will be passed to the page component as props
+    props: {
+      weekTrending: weekTrending.results,
+      dayTrending: dayTrending.results,
+    }, // will be passed to the page component as props
   };
 };
