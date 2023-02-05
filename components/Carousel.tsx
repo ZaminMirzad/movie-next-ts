@@ -18,6 +18,7 @@ export const CustomCarousel = ({ movies }: { movies: ITv[] | IMovie[] }) => {
         autoPlay={true}
         showStatus={false}
         infiniteLoop={true}
+        showThumbs={false}
         // animationHandler={'fade'}
         showIndicators={false}
         renderArrowPrev={(clickHandler, hasPrev) => {
