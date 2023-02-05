@@ -12,7 +12,6 @@ import { apiKey, baseUrl, imgBaseUrl } from '@/utils/constants';
 import { CustomSpinnier } from '@/components/CustomSpinnier';
 import { ICast, ICrew, IMovie } from '@/utils/types';
 import { CHARACTER_ROUTE } from '@/utils/routes';
-import 'react-responsive-modal/styles.css';
 
 interface Props {
   movie: IMovie;

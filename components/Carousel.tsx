@@ -7,24 +7,6 @@ import Image from 'next/image';
 import { BsStarFill, BsStarHalf } from 'react-icons/bs';
 import { IMovie, ITv } from '@/utils/types';
 
-export interface Props {
-  id: number;
-  firstName: string;
-  lastName: string;
-  imageUrl: string;
-  title: string;
-  name: string;
-  original_name: string;
-  original_title: string;
-  backdrop_path: string;
-  media_type: string;
-  poster_path: string;
-  vote_average: number;
-  overview: string;
-  first_air_date: string;
-  original_language: string;
-}
-
 export const CustomCarousel = ({ movies }: { movies: ITv[] | IMovie[] }) => {
   return (
     <>
